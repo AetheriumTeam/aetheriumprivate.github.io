@@ -1,24 +1,184 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aetherium - Приватный Minecraft сервер</title>
-    <meta name="description" content="Приватный Minecraft сервер Aetherium с уникальной системой сезонов. Каждые 6 месяцев новое приключение! Подавай анкету и присоединяйся к нашему комьюнити." />
-    <meta name="author" content="Lovable" />
+    <meta name="description" content="Приватный Minecraft сервер Aetherium с уникальной системой сезонов. Каждые 6 месяцев новое приключение! Подавай анкету и присоединяйся к нашему комьюнити.">
+    <meta name="author" content="Aetherium">
 
-    <meta property="og:title" content="Aetherium - Приватный Minecraft сервер" />
-    <meta property="og:description" content="Приватный Minecraft сервер с уникальной системой сезонов. Каждые 6 месяцев новое приключение!" />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <meta property="og:title" content="Aetherium - Приватный Minecraft сервер">
+    <meta property="og:description" content="Приватный Minecraft сервер с уникальной системой сезонов. Каждые 6 месяцев новое приключение!">
+    <meta property="og:type" content="website">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <div class="nav-content">
+                <a href="/" class="logo">
+                    <img src="assets/aetherium-logo.png" alt="Aetherium" class="logo-img">
+                    <span class="logo-text">Aetherium</span>
+                </a>
+                
+                <div class="nav-links desktop-only">
+                    <a href="/" class="nav-link active">Главная</a>
+                    <a href="rules.html" class="nav-link">Правила</a>
+                </div>
+                
+                <a href="https://forms.gle/2kU2U2vTN8VJX7gL6" target="_blank" class="btn btn-primary desktop-only">
+                    Подать анкету
+                </a>
+                
+                <button class="mobile-menu-btn mobile-only" id="mobileMenuBtn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <div class="mobile-menu-content">
+                <a href="/" class="mobile-nav-link active">Главная</a>
+                <a href="rules.html" class="mobile-nav-link">Правила</a>
+                <a href="https://forms.gle/2kU2U2vTN8VJX7gL6" target="_blank" class="btn btn-primary">
+                    Подать анкету
+                </a>
+            </div>
+        </div>
+    </nav>
 
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@lovable_dev" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
-  </head>
+    <!-- Hero Section -->
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-logo">
+                        <img src="assets/aetherium-logo.png" alt="Aetherium" class="logo-large float-animation">
+                    </div>
+                    <h1 class="hero-title">
+                        Добро пожаловать в <span class="gradient-text">Aetherium</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        Приватный Minecraft сервер с уникальной системой сезонов.<br>
+                        Каждые 6 месяцев новое приключение!
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="https://forms.gle/2kU2U2vTN8VJX7gL6" target="_blank" class="btn btn-primary btn-large">
+                            Подать анкету
+                        </a>
+                        <a href="rules.html" class="btn btn-secondary btn-large">
+                            Правила сервера
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+        <!-- Features Section -->
+        <section class="features">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Система сезонов</h2>
+                    <p class="section-subtitle">
+                        Уникальная система, которая делает каждые полгода особенными
+                    </p>
+                </div>
+                
+                <div class="features-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="badge badge-primary">5 месяцев</span>
+                            <h3 class="card-title">Основной сезон</h3>
+                        </div>
+                        <div class="card-content">
+                            <p>Период активного развития и строительства. Игроки создают свои проекты, участвуют в событиях и соревнуются за награды.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="badge badge-secondary">1 месяц</span>
+                            <h3 class="card-title">Межсезонье</h3>
+                        </div>
+                        <div class="card-content">
+                            <p>Время для отдыха и подведения итогов. Награждение лучших игроков, планирование следующего сезона и специальные мероприятия.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Rewards Section -->
+        <section class="rewards">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Награды и признание</h2>
+                    <p class="section-subtitle">
+                        Лучшие игроки получают особые награды и вечное признание
+                    </p>
+                </div>
+                
+                <div class="rewards-grid">
+                    <div class="card">
+                        <div class="card-icon">
+                            <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Редкие награды</h3>
+                        <p class="card-text">Уникальные предметы и титулы, которые невозможно получить другим способом.</p>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-icon">
+                            <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Вечное признание</h3>
+                        <p class="card-text">Имена победителей навсегда останутся в истории сервера и получат особый статус.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Social Links Section -->
+        <section class="social">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Присоединяйся к комьюнити</h2>
+                    <p class="section-subtitle">
+                        Следи за новостями и общайся с другими игроками в наших социальных сетях
+                    </p>
+                </div>
+                
+                <div class="social-links">
+                    <a href="https://t.me/Aetherium_server" target="_blank" class="social-link" aria-label="Telegram">
+                        <img src="assets/telegram-icon.png" alt="Telegram" class="social-icon">
+                    </a>
+                    <a href="https://www.tiktok.com/@aetherium_private?_t=ZM-8zrVpQs56Ro&_r=1" target="_blank" class="social-link" aria-label="TikTok">
+                        <img src="assets/tiktok-icon.png" alt="TikTok" class="social-icon">
+                    </a>
+                    <a href="https://youtube.com/@aetherium_private?si=gG6vb288d1hmvfGQ" target="_blank" class="social-link" aria-label="YouTube">
+                        <img src="assets/youtube-icon.png" alt="YouTube" class="social-icon">
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Aetherium. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
 </html>
