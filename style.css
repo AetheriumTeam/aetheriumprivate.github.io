@@ -217,7 +217,7 @@ body::before {
     top: 100%;
     left: 0;
     right: 0;
-    background: hsla(var(--background), 0.95);
+    background: hsla(222, 47%, 8%, 0.98);
     backdrop-filter: blur(16px);
     border-bottom: 1px solid hsl(var(--border));
     padding: 1rem 0;
@@ -315,6 +315,8 @@ body::before {
     box-shadow: 0 0 60px hsla(var(--crystal), 0.6);
     object-fit: cover;
     border: 3px solid hsla(var(--crystal), 0.3);
+    display: block;
+    margin: 0 auto;
 }
 
 .hero-title {
@@ -596,6 +598,152 @@ body::before {
     margin-top: 0.5rem;
 }
 
+/* Privileges Page */
+.privileges-page {
+    padding: 8rem 0 4rem;
+    min-height: 100vh;
+    transition: background 1s ease;
+}
+
+.privilege-carousel {
+    position: relative;
+    max-width: 900px;
+    margin: 3rem auto;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.privilege-card-wrapper {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+    min-height: 600px;
+}
+
+.privilege-card {
+    display: none;
+    animation: fade-in 0.6s ease;
+}
+
+.privilege-card.active {
+    display: block;
+}
+
+.privilege-image {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto 2rem;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.privilege-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.privilege-content {
+    background: hsla(var(--card), 0.9);
+    backdrop-filter: blur(16px);
+    border: 1px solid hsl(var(--border));
+    border-radius: var(--radius);
+    padding: 2rem;
+}
+
+.privilege-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: hsl(var(--crystal));
+}
+
+.privilege-price {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: hsl(var(--gold));
+    margin-bottom: 1rem;
+}
+
+.privilege-description {
+    color: hsl(var(--muted-foreground));
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.privilege-features h3 {
+    color: hsl(var(--crystal));
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+}
+
+.privilege-features ul {
+    list-style: none;
+    padding: 0;
+}
+
+.privilege-features li {
+    color: hsl(var(--foreground));
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.privilege-features li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: hsl(var(--crystal));
+    font-weight: bold;
+}
+
+.carousel-btn {
+    background: hsla(var(--crystal), 0.2);
+    border: 2px solid hsl(var(--crystal));
+    border-radius: 50%;
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.carousel-btn:hover {
+    background: hsla(var(--crystal), 0.4);
+    transform: scale(1.1);
+}
+
+.carousel-btn .icon {
+    color: hsl(var(--crystal));
+}
+
+.privilege-action {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+/* Background colors for privileges */
+body.privilege-red {
+    background: linear-gradient(135deg, hsl(0, 50%, 15%) 0%, hsl(222, 84%, 5%) 100%);
+}
+
+body.privilege-blue {
+    background: linear-gradient(135deg, hsl(210, 70%, 20%) 0%, hsl(222, 84%, 5%) 100%);
+}
+
+body.privilege-yellow {
+    background: linear-gradient(135deg, hsl(43, 60%, 20%) 0%, hsl(222, 84%, 5%) 100%);
+}
+
+body.privilege-black {
+    background: linear-gradient(135deg, hsl(0, 0%, 8%) 0%, hsl(222, 84%, 5%) 100%);
+}
+
 /* Footer */
 .footer {
     background: hsl(var(--card));
@@ -613,6 +761,17 @@ body::before {
 }
 
 /* Animations */
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 @keyframes gradient-shift {
     0%, 100% {
         background-position: 0% 50%;
@@ -710,6 +869,27 @@ body::before {
     .features-grid,
     .rewards-grid {
         grid-template-columns: 1fr;
+    }
+    
+    .privilege-carousel {
+        flex-direction: column;
+    }
+    
+    .carousel-btn {
+        order: 3;
+    }
+    
+    .carousel-prev {
+        order: 1;
+    }
+    
+    .carousel-next {
+        order: 2;
+    }
+    
+    .privilege-card-wrapper {
+        order: 2;
+        min-height: auto;
     }
 }
 

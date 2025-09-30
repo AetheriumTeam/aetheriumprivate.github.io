@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Привилегии - Aetherium</title>
+    <meta name="description" content="Привилегии сервера Aetherium Minecraft - уникальные возможности для игроков">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <div class="nav-content">
+                <a href="index.html" class="logo">
+                    <img src="assets/aetherium-logo.png" alt="Aetherium Logo" class="logo-img">
+                    <span class="logo-text">Aetherium</span>
+                </a>
+                
+                <div class="nav-links desktop-only">
+                    <a href="index.html" class="nav-link">Главная</a>
+                    <a href="rules.html" class="nav-link">Правила</a>
+                    <a href="privileges.html" class="nav-link active">Привилегии</a>
+                    <a href="https://forms.gle/fGHE6KKRMKdjvKsLA" class="btn btn-primary" target="_blank">Анкета</a>
+                </div>
+                
+                <button class="mobile-menu-btn mobile-only" id="mobileMenuBtn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+            
+            <div class="mobile-menu" id="mobileMenu">
+                <div class="mobile-menu-content">
+                    <a href="index.html" class="mobile-nav-link">Главная</a>
+                    <a href="rules.html" class="mobile-nav-link">Правила</a>
+                    <a href="privileges.html" class="mobile-nav-link active">Привилегии</a>
+                    <a href="https://forms.gle/fGHE6KKRMKdjvKsLA" class="mobile-nav-link" target="_blank">Анкета</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Privileges Carousel -->
+    <section class="privileges-page">
+        <div class="container">
+            <div class="page-header">
+                <h1 class="page-title">Привилегии</h1>
+                <p class="page-subtitle">Выберите свою уникальную привилегию</p>
+            </div>
+
+            <div class="privilege-carousel">
+                <button class="carousel-btn carousel-prev" id="prevBtn">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                </button>
+
+                <div class="privilege-card-wrapper">
+                    <!-- Duskwither -->
+                    <div class="privilege-card active" data-color="red">
+                        <div class="privilege-image">
+                            <img src="assets/duskwither.png" alt="Duskwither">
+                        </div>
+                        <div class="privilege-content">
+                            <h2 class="privilege-title">🟥 Duskwither</h2>
+                            <p class="privilege-price">39₽</p>
+                            <p class="privilege-description">Самая доступная привилегия для тех, кто хочет немного выделиться. Даёт базовые визуальные эффекты без нагрузки на чат и экран.</p>
+                            <div class="privilege-features">
+                                <h3>Привилегии:</h3>
+                                <ul>
+                                    <li>Уникальный префикс</li>
+                                    <li>Уникальный аватар</li>
+                                    <li>Уникальный плащ</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Nullbyte -->
+                    <div class="privilege-card" data-color="blue">
+                        <div class="privilege-image">
+                            <img src="assets/nullbyte.png" alt="Nullbyte">
+                        </div>
+                        <div class="privilege-content">
+                            <h2 class="privilege-title">🟦 Nullbyte</h2>
+                            <p class="privilege-price">79₽</p>
+                            <p class="privilege-description">Для игроков, которые хотят что-то оригинальное.</p>
+                            <div class="privilege-features">
+                                <h3>Привилегии:</h3>
+                                <ul>
+                                    <li>Уникальный префикс</li>
+                                    <li>Уникальный аватар</li>
+                                    <li>Уникальный плащ</li>
+                                    <li>Уникальные эмоции в чате</li>
+                                    <li>Скрытие ника в табе и при заходе игры (переключается)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Gearheart -->
+                    <div class="privilege-card" data-color="yellow">
+                        <div class="privilege-image">
+                            <img src="assets/gearheart.jpg" alt="Gearheart">
+                        </div>
+                        <div class="privilege-content">
+                            <h2 class="privilege-title">🟨 Gearheart</h2>
+                            <p class="privilege-price">129₽</p>
+                            <p class="privilege-description">Для тех, кто любит красивые детали и атмосферу.</p>
+                            <div class="privilege-features">
+                                <h3>Привилегии:</h3>
+                                <ul>
+                                    <li>Уникальный префикс</li>
+                                    <li>Уникальный аватар</li>
+                                    <li>Уникальный плащ</li>
+                                    <li>Уникальные эмоции в чате</li>
+                                    <li>Скрытие ника в табе и при заходе игры (переключается)</li>
+                                    <li>Доступ к связи напрямую с администраторами и модераторами</li>
+                                    <li>Гарантирование принятия анкеты своего друга (3 друга на 1 сезон)</li>
+                                    <li>Уникальное подписывание предметов</li>
+                                    <li>Дарение любому игроку привилегии Duskwither</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dreadwield -->
+                    <div class="privilege-card" data-color="black">
+                        <div class="privilege-image">
+                            <img src="assets/dreadwield.png" alt="Dreadwield">
+                        </div>
+                        <div class="privilege-content">
+                            <h2 class="privilege-title">⬛ Dreadwield</h2>
+                            <p class="privilege-price">179₽</p>
+                            <p class="privilege-description">Максимально эффектная и дорогая привилегия.</p>
+                            <div class="privilege-features">
+                                <h3>Привилегии:</h3>
+                                <ul>
+                                    <li>Кастомный префикс на заказ</li>
+                                    <li>Кастомный аватар на заказ</li>
+                                    <li>Кастомный плащ на заказ</li>
+                                    <li>Уникальные эмоции в чате</li>
+                                    <li>Кастомное изменение ника</li>
+                                    <li>Скрытие ника в табе и при заходе игры (переключается)</li>
+                                    <li>Гарантирование принятия анкеты своего друга (10 друзей на 1 сезон)</li>
+                                    <li>Уникальное подписывание предметов</li>
+                                    <li>Дарение любому игроку привилегии Nullbyte</li>
+                                    <li>Доступ к связи напрямую с администраторами и модераторами</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="carousel-btn carousel-next" id="nextBtn">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="privilege-action">
+                <button class="btn btn-primary btn-large" id="buyBtn">Купить</button>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>

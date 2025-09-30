@@ -4,7 +4,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const mobileMenu = document.getElementById('mobileMenu');
     
     if (mobileMenuBtn && mobileMenu) {
-        mobileMenuBtn.addEventListener('click', function() {
+        mobileMenuBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
             mobileMenuBtn.classList.toggle('active');
             mobileMenu.classList.toggle('active');
         });
@@ -24,6 +26,56 @@ document.addEventListener('DOMContentLoaded', function() {
                 mobileMenuBtn.classList.remove('active');
                 mobileMenu.classList.remove('active');
             }
+        });
+    }
+    
+    // Privilege Carousel
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const privilegeCards = document.querySelectorAll('.privilege-card');
+    let currentIndex = 0;
+    
+    if (privilegeCards.length > 0) {
+        function updateCarousel() {
+            privilegeCards.forEach((card, index) => {
+                card.classList.remove('active');
+                if (index === currentIndex) {
+                    card.classList.add('active');
+                    
+                    // Change background based on privilege color
+                    const color = card.getAttribute('data-color');
+                    document.body.className = '';
+                    document.body.classList.add('privilege-' + color);
+                }
+            });
+        }
+        
+        if (prevBtn) {
+            prevBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                currentIndex = (currentIndex - 1 + privilegeCards.length) % privilegeCards.length;
+                updateCarousel();
+            });
+        }
+        
+        if (nextBtn) {
+            nextBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                currentIndex = (currentIndex + 1) % privilegeCards.length;
+                updateCarousel();
+            });
+        }
+        
+        // Initialize first card
+        updateCarousel();
+    }
+    
+    // Buy button (placeholder)
+    const buyBtn = document.getElementById('buyBtn');
+    if (buyBtn) {
+        buyBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('Функция покупки будет добавлена позже');
         });
     }
 });
