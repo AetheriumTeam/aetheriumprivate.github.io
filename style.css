@@ -43,10 +43,35 @@ body::before {
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(circle at 20% 80%, hsla(186, 100%, 41%, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, hsla(43, 96%, 56%, 0.1) 0%, transparent 50%);
+    background: 
+        radial-gradient(circle at 20% 80%, hsla(186, 100%, 41%, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, hsla(43, 96%, 56%, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, hsla(270, 100%, 50%, 0.1) 0%, transparent 70%);
     pointer-events: none;
     z-index: -1;
+}
+
+/* Fireflies container */
+.fireflies {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.firefly {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: hsl(var(--crystal-glow));
+    border-radius: 50%;
+    box-shadow: 0 0 10px hsl(var(--crystal-glow)), 0 0 20px hsl(var(--crystal));
+    animation: fly linear infinite;
+    opacity: 0;
 }
 
 .container {
@@ -115,6 +140,15 @@ body::before {
     width: 2.5rem;
     height: 2.5rem;
     border-radius: 50%;
+    object-fit: cover;
+}
+
+.logo-text {
+    background: linear-gradient(135deg, hsl(var(--gold)) 0%, hsl(43 96% 70%) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 20px hsla(var(--gold), 0.3);
 }
 
 .nav-links {
@@ -275,10 +309,12 @@ body::before {
 }
 
 .logo-large {
-    width: 8rem;
-    height: 8rem;
+    width: 12rem;
+    height: 12rem;
     border-radius: 50%;
-    box-shadow: 0 0 40px hsla(var(--crystal), 0.4);
+    box-shadow: 0 0 60px hsla(var(--crystal), 0.6);
+    object-fit: cover;
+    border: 3px solid hsla(var(--crystal), 0.3);
 }
 
 .hero-title {
@@ -505,6 +541,61 @@ body::before {
     line-height: 1.6;
 }
 
+/* Rules Content */
+.rules-text {
+    padding: 1rem;
+}
+
+.rules-section-title {
+    font-size: 1.75rem;
+    font-weight: bold;
+    color: hsl(var(--crystal));
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid hsla(var(--crystal), 0.3);
+}
+
+.rules-section-title:first-child {
+    margin-top: 0;
+}
+
+.rule-item {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: hsla(var(--crystal), 0.05);
+    border-radius: 0.5rem;
+    border-left: 3px solid hsl(var(--crystal));
+    transition: all 0.3s ease;
+}
+
+.rule-item:hover {
+    background: hsla(var(--crystal), 0.1);
+    transform: translateX(5px);
+}
+
+.rule-number {
+    font-weight: bold;
+    color: hsl(var(--gold));
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+.rule-item p {
+    color: hsl(var(--foreground));
+    line-height: 1.6;
+    margin: 0;
+}
+
+.punishment {
+    color: hsl(var(--gold));
+    font-weight: 600;
+    display: block;
+    margin-top: 0.5rem;
+}
+
 /* Footer */
 .footer {
     background: hsl(var(--card));
@@ -561,6 +652,23 @@ body::before {
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+@keyframes fly {
+    0% {
+        opacity: 0;
+        transform: translateY(100vh) translateX(0);
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-100vh) translateX(var(--tx));
     }
 }
 

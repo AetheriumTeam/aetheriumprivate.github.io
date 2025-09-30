@@ -42,6 +42,38 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
+// Create fireflies effect
+function createFireflies() {
+    const container = document.createElement('div');
+    container.className = 'fireflies';
+    document.body.appendChild(container);
+    
+    const fireflyCount = 30;
+    
+    for (let i = 0; i < fireflyCount; i++) {
+        const firefly = document.createElement('div');
+        firefly.className = 'firefly';
+        
+        const startX = Math.random() * 100;
+        const endX = startX + (Math.random() - 0.5) * 100;
+        const duration = 10 + Math.random() * 20;
+        const delay = Math.random() * 10;
+        const size = 2 + Math.random() * 2;
+        
+        firefly.style.left = startX + '%';
+        firefly.style.width = size + 'px';
+        firefly.style.height = size + 'px';
+        firefly.style.animationDuration = duration + 's';
+        firefly.style.animationDelay = delay + 's';
+        firefly.style.setProperty('--tx', endX + 'vw');
+        
+        container.appendChild(firefly);
+    }
+}
+
+// Initialize fireflies on page load
+document.addEventListener('DOMContentLoaded', createFireflies);
+
 // Add scroll effect to navigation
 window.addEventListener('scroll', function() {
     const nav = document.querySelector('.nav');
