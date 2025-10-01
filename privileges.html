@@ -51,13 +51,13 @@
             </div>
 
             <div class="privilege-carousel">
-                <button class="carousel-btn carousel-prev" id="prevBtn">
-                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polyline points="15 18 9 12 15 6"></polyline>
-                    </svg>
-                </button>
-
                 <div class="privilege-card-wrapper">
+                    <button class="carousel-btn carousel-prev" id="prevBtn">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                    </button>
+
                     <!-- Duskwither -->
                     <div class="privilege-card active" data-color="red">
                         <div class="privilege-image">
@@ -67,7 +67,8 @@
                             <h2 class="privilege-title">🟥 Duskwither</h2>
                             <p class="privilege-price">39₽</p>
                             <p class="privilege-description">Самая доступная привилегия для тех, кто хочет немного выделиться. Даёт базовые визуальные эффекты без нагрузки на чат и экран.</p>
-                            <div class="privilege-features">
+                            <button class="toggle-features-btn">Показать возможности</button>
+                            <div class="privilege-features" style="display: none;">
                                 <h3>Привилегии:</h3>
                                 <ul>
                                     <li>Уникальный префикс</li>
@@ -87,7 +88,8 @@
                             <h2 class="privilege-title">🟦 Nullbyte</h2>
                             <p class="privilege-price">79₽</p>
                             <p class="privilege-description">Для игроков, которые хотят что-то оригинальное.</p>
-                            <div class="privilege-features">
+                            <button class="toggle-features-btn">Показать возможности</button>
+                            <div class="privilege-features" style="display: none;">
                                 <h3>Привилегии:</h3>
                                 <ul>
                                     <li>Уникальный префикс</li>
@@ -109,7 +111,8 @@
                             <h2 class="privilege-title">🟨 Gearheart</h2>
                             <p class="privilege-price">129₽</p>
                             <p class="privilege-description">Для тех, кто любит красивые детали и атмосферу.</p>
-                            <div class="privilege-features">
+                            <button class="toggle-features-btn">Показать возможности</button>
+                            <div class="privilege-features" style="display: none;">
                                 <h3>Привилегии:</h3>
                                 <ul>
                                     <li>Уникальный префикс</li>
@@ -135,7 +138,8 @@
                             <h2 class="privilege-title">⬛ Dreadwield</h2>
                             <p class="privilege-price">179₽</p>
                             <p class="privilege-description">Максимально эффектная и дорогая привилегия.</p>
-                            <div class="privilege-features">
+                            <button class="toggle-features-btn">Показать возможности</button>
+                            <div class="privilege-features" style="display: none;">
                                 <h3>Привилегии:</h3>
                                 <ul>
                                     <li>Кастомный префикс на заказ</li>
@@ -152,13 +156,12 @@
                             </div>
                         </div>
                     </div>
+                    <button class="carousel-btn carousel-next" id="nextBtn">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </button>
                 </div>
-
-                <button class="carousel-btn carousel-next" id="nextBtn">
-                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polyline points="9 18 15 12 9 6"></polyline>
-                    </svg>
-                </button>
             </div>
 
             <div class="privilege-action">

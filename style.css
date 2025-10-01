@@ -302,6 +302,9 @@ body::before {
 .hero-content {
     max-width: 800px;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .hero-logo {
@@ -316,7 +319,6 @@ body::before {
     object-fit: cover;
     border: 3px solid hsla(var(--crystal), 0.3);
     display: block;
-    margin: 0 auto;
 }
 
 .hero-title {
@@ -607,27 +609,34 @@ body::before {
 
 .privilege-carousel {
     position: relative;
-    max-width: 900px;
+    max-width: 1000px;
     margin: 3rem auto;
-    display: flex;
-    align-items: center;
-    gap: 2rem;
+    padding: 2rem 0;
 }
 
 .privilege-card-wrapper {
-    flex: 1;
-    overflow: hidden;
     position: relative;
-    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 80px;
 }
 
 .privilege-card {
     display: none;
-    animation: fade-in 0.6s ease;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 2rem;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    max-width: 700px;
+    margin: 0 auto;
 }
 
 .privilege-card.active {
     display: block;
+    animation: fade-in 0.5s ease;
 }
 
 .privilege-image {
@@ -699,23 +708,59 @@ body::before {
     font-weight: bold;
 }
 
+.toggle-features-btn {
+    margin-top: 1rem;
+    padding: 0.75rem 1.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.toggle-features-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.02);
+}
+
+.privilege-features {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
 .carousel-btn {
-    background: hsla(var(--crystal), 0.2);
-    border: 2px solid hsl(var(--crystal));
+    position: absolute;
+    top: 35%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
-    width: 3rem;
-    height: 3rem;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     transition: all 0.3s ease;
-    flex-shrink: 0;
+    z-index: 10;
 }
 
 .carousel-btn:hover {
-    background: hsla(var(--crystal), 0.4);
-    transform: scale(1.1);
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-prev {
+    left: 10px;
+}
+
+.carousel-next {
+    right: 10px;
 }
 
 .carousel-btn .icon {
@@ -729,19 +774,23 @@ body::before {
 
 /* Background colors for privileges */
 body.privilege-red {
-    background: linear-gradient(135deg, hsl(0, 50%, 15%) 0%, hsl(222, 84%, 5%) 100%);
+    background: linear-gradient(135deg, #ff0000 0%, #000000 100%);
+    transition: background 0.5s ease;
 }
 
 body.privilege-blue {
-    background: linear-gradient(135deg, hsl(210, 70%, 20%) 0%, hsl(222, 84%, 5%) 100%);
+    background: linear-gradient(135deg, #00bfff 0%, #0000ff 100%);
+    transition: background 0.5s ease;
 }
 
 body.privilege-yellow {
-    background: linear-gradient(135deg, hsl(43, 60%, 20%) 0%, hsl(222, 84%, 5%) 100%);
+    background: linear-gradient(135deg, #ffff00 0%, #00ff00 100%);
+    transition: background 0.5s ease;
 }
 
 body.privilege-black {
-    background: linear-gradient(135deg, hsl(0, 0%, 8%) 0%, hsl(222, 84%, 5%) 100%);
+    background: linear-gradient(135deg, #808080 0%, #000000 100%);
+    transition: background 0.5s ease;
 }
 
 /* Footer */
@@ -871,25 +920,26 @@ body.privilege-black {
         grid-template-columns: 1fr;
     }
     
-    .privilege-carousel {
-        flex-direction: column;
-    }
-    
-    .carousel-btn {
-        order: 3;
-    }
-    
     .carousel-prev {
-        order: 1;
+        left: 5px;
     }
     
     .carousel-next {
-        order: 2;
+        right: 5px;
+    }
+    
+    .carousel-btn {
+        width: 40px;
+        height: 40px;
+        top: 25%;
+    }
+    
+    .privilege-card {
+        padding: 1.5rem;
     }
     
     .privilege-card-wrapper {
-        order: 2;
-        min-height: auto;
+        padding: 0 60px;
     }
 }
 

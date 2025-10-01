@@ -78,6 +78,22 @@ document.addEventListener('DOMContentLoaded', function() {
             alert('Функция покупки будет добавлена позже');
         });
     }
+    
+    // Toggle features buttons
+    const toggleBtns = document.querySelectorAll('.toggle-features-btn');
+    toggleBtns.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const features = this.nextElementSibling;
+            if (features.style.display === 'none') {
+                features.style.display = 'block';
+                this.textContent = 'Скрыть возможности';
+            } else {
+                features.style.display = 'none';
+                this.textContent = 'Показать возможности';
+            }
+        });
+    });
 });
 
 // Smooth scrolling for anchor links
