@@ -90,32 +90,32 @@ export default function Auth() {
                     <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
                         <TabsList className="grid w-full grid-cols-2 p-1 bg-muted/50 backdrop-blur-sm relative">
                             <div
-                                className="absolute inset-y-1 w-[calc(50%-4px)] bg-background shadow-lg rounded-md transition-all duration-500 ease-out"
+                                className="absolute inset-y-1 w-[calc(50%-4px)] bg-background shadow-lg rounded-md transition-all duration-300 ease-out"
                                 style={{
                                     left: activeTab === 'signin' ? '4px' : 'calc(50% + 0px)',
                                 }}
                             />
                             <TabsTrigger
                                 value="signin"
-                                className="relative z-10 transition-all duration-500 data-[state=active]:text-foreground text-muted-foreground"
+                                className="relative z-10 transition-all duration-300 data-[state=active]:text-foreground text-muted-foreground"
                             >
                                 Вход
                             </TabsTrigger>
                             <TabsTrigger
                                 value="signup"
-                                className="relative z-10 transition-all duration-500 data-[state=active]:text-foreground text-muted-foreground"
+                                className="relative z-10 transition-all duration-300 data-[state=active]:text-foreground text-muted-foreground"
                             >
                                 Регистрация
                             </TabsTrigger>
                         </TabsList>
 
-                        <div className="relative mt-4" style={{ minHeight: activeTab === 'signin' ? '240px' : '320px', transition: 'min-height 500ms ease-out' }}>
+                        <div className="relative mt-4" style={{ minHeight: activeTab === 'signin' ? '240px' : '320px', transition: 'min-height 300ms ease-out' }}>
                             <TabsContent
                                 value="signin"
-                                className="absolute inset-0 transition-all duration-500 data-[state=inactive]:opacity-0 data-[state=inactive]:translate-x-[-20px] data-[state=inactive]:pointer-events-none data-[state=active]:opacity-100 data-[state=active]:translate-x-0"
+                                className="absolute inset-0 transition-all duration-400 data-[state=inactive]:opacity-0 data-[state=inactive]:translate-x-[-20px] data-[state=inactive]:pointer-events-none data-[state=active]:opacity-100 data-[state=active]:translate-x-0"
                             >
                                 <form onSubmit={handleSignIn} className="space-y-4">
-                                    <div className="space-y-2">
+                                    <div className="space-y-2 animate-in fade-in-0 slide-in-from-bottom-2 duration-500 delay-100">
                                         <Label htmlFor="signin-email">Email</Label>
                                         <Input
                                             id="signin-email"
@@ -123,11 +123,11 @@ export default function Auth() {
                                             placeholder="your@email.com"
                                             value={email}
                                             onChange={(e) => setEmail(e.target.value)}
-                                            className="transition-all duration-500 focus:scale-[1.01]"
+                                            className="transition-all duration-300 focus:scale-[1.01] focus:shadow-lg focus:shadow-primary/20"
                                             required
                                         />
                                     </div>
-                                    <div className="space-y-2">
+                                    <div className="space-y-2 animate-in fade-in-0 slide-in-from-bottom-2 duration-500 delay-200">
                                         <Label htmlFor="signin-password">Пароль</Label>
                                         <Input
                                             id="signin-password"
@@ -135,13 +135,13 @@ export default function Auth() {
                                             placeholder="••••••••"
                                             value={password}
                                             onChange={(e) => setPassword(e.target.value)}
-                                            className="transition-all duration-500 focus:scale-[1.01]"
+                                            className="transition-all duration-300 focus:scale-[1.01] focus:shadow-lg focus:shadow-primary/20"
                                             required
                                         />
                                     </div>
                                     <Button
                                         type="submit"
-                                        className="w-full transition-all duration-500 hover:scale-[1.01] active:scale-[0.98]"
+                                        className="w-full transition-all duration-300 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98] animate-in fade-in-0 slide-in-from-bottom-2 delay-300"
                                         disabled={loading}
                                     >
                                         {loading ? (
@@ -156,10 +156,10 @@ export default function Auth() {
 
                             <TabsContent
                                 value="signup"
-                                className="absolute inset-0 transition-all duration-500 data-[state=inactive]:opacity-0 data-[state=inactive]:translate-x-[20px] data-[state=inactive]:pointer-events-none data-[state=active]:opacity-100 data-[state=active]:translate-x-0"
+                                className="absolute inset-0 transition-all duration-400 data-[state=inactive]:opacity-0 data-[state=inactive]:translate-x-[20px] data-[state=inactive]:pointer-events-none data-[state=active]:opacity-100 data-[state=active]:translate-x-0"
                             >
                                 <form onSubmit={handleSignUp} className="space-y-4">
-                                    <div className="space-y-2">
+                                    <div className="space-y-2 animate-in fade-in-0 slide-in-from-bottom-2 duration-500 delay-100">
                                         <Label htmlFor="signup-username">Имя пользователя</Label>
                                         <Input
                                             id="signup-username"
@@ -167,11 +167,11 @@ export default function Auth() {
                                             placeholder="username"
                                             value={username}
                                             onChange={(e) => setUsername(e.target.value)}
-                                            className="transition-all duration-500 focus:scale-[1.01]"
+                                            className="transition-all duration-300 focus:scale-[1.01] focus:shadow-lg focus:shadow-primary/20"
                                             required
                                         />
                                     </div>
-                                    <div className="space-y-2">
+                                    <div className="space-y-2 animate-in fade-in-0 slide-in-from-bottom-2 duration-500 delay-200">
                                         <Label htmlFor="signup-email">Email</Label>
                                         <Input
                                             id="signup-email"
@@ -179,11 +179,11 @@ export default function Auth() {
                                             placeholder="your@email.com"
                                             value={email}
                                             onChange={(e) => setEmail(e.target.value)}
-                                            className="transition-all duration-500 focus:scale-[1.01]"
+                                            className="transition-all duration-300 focus:scale-[1.01] focus:shadow-lg focus:shadow-primary/20"
                                             required
                                         />
                                     </div>
-                                    <div className="space-y-2">
+                                    <div className="space-y-2 animate-in fade-in-0 slide-in-from-bottom-2 duration-500 delay-300">
                                         <Label htmlFor="signup-password">Пароль</Label>
                                         <Input
                                             id="signup-password"
@@ -191,14 +191,14 @@ export default function Auth() {
                                             placeholder="••••••••"
                                             value={password}
                                             onChange={(e) => setPassword(e.target.value)}
-                                            className="transition-all duration-500 focus:scale-[1.01]"
+                                            className="transition-all duration-300 focus:scale-[1.01] focus:shadow-lg focus:shadow-primary/20"
                                             required
                                             minLength={6}
                                         />
                                     </div>
                                     <Button
                                         type="submit"
-                                        className="w-full transition-all duration-500 hover:scale-[1.01] active:scale-[0.98]"
+                                        className="w-full transition-all duration-300 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98] animate-in fade-in-0 slide-in-from-bottom-2 delay-400"
                                         disabled={loading}
                                     >
                                         {loading ? (
