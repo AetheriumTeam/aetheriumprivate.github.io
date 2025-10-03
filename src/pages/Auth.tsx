@@ -87,6 +87,9 @@ export default function Auth() {
         }
     };
 
+    // Compute initial tab indicator position
+    const initialTabPosition = activeTab === 'signin' ? '4px' : 'calc(50% + 0px)';
+
     return (
         <div className="min-h-screen bg-gradient-to-br from-primary/20 via-background to-secondary/20 flex items-center justify-center p-4">
             <Card className="w-full max-w-md animate-in fade-in-0 zoom-in-98 duration-500 overflow-hidden">
@@ -98,20 +101,20 @@ export default function Auth() {
                         Войдите или зарегистрируйтесь
                     </CardDescription>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="p-4">
                     <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
                         <TabsList className="grid w-full grid-cols-2 p-1 bg-muted/50 backdrop-blur-sm relative">
-                            {isMounted && (
+                            {isMounted ? (
                                 <motion.div
                                     className="absolute inset-y-1 w-[calc(50%-4px)] bg-background shadow-lg rounded-md"
-                                    initial={false}
-                                    animate={{
-                                        left: activeTab === 'signin' ? '4px' : 'calc(50% + 0px)',
-                                    }}
-                                    transition={{
-                                        ease: 'easeOut',
-                                        duration: 0.15,
-                                    }}
+                                    initial={{ left: initialTabPosition }}
+                                    animate={{ left: activeTab === 'signin' ? '4px' : 'calc(50% + 0px)' }}
+                                    transition={{ ease: 'easeOut', duration: 0.15 }}
+                                />
+                            ) : (
+                                <div
+                                    className="absolute inset-y-1 w-[calc(50%-4px)] bg-background shadow-lg rounded-md"
+                                    style={{ left: initialTabPosition }}
                                 />
                             )}
                             <TabsTrigger
@@ -165,7 +168,7 @@ export default function Auth() {
                                                         placeholder="your@email.com"
                                                         value={email}
                                                         onChange={(e) => setEmail(e.target.value)}
-                                                        className="transition-all duration-150 focus:shadow-xl focus:ring-2 focus:ring-primary/50"
+                                                        className="w-full mx-auto bg-background transition duration-200 ease-out focus:bg-primary/10 focus:border-primary focus:shadow-lg focus:animate-pulse-glow"
                                                         required
                                                     />
                                                 </motion.div>
@@ -182,19 +185,19 @@ export default function Auth() {
                                                         placeholder="••••••••"
                                                         value={password}
                                                         onChange={(e) => setPassword(e.target.value)}
-                                                        className="transition-all duration-150 focus:shadow-xl focus:ring-2 focus:ring-primary/50"
+                                                        className="w-full mx-auto bg-background transition duration-200 ease-out focus:bg-primary/10 focus:border-primary focus:shadow-lg focus:animate-pulse-glow"
                                                         required
                                                     />
                                                 </motion.div>
                                                 <motion.div
-                                                    className="space-y-2"
+                                                    className="space-y-2 mt-4"
                                                     initial={{ opacity: 0, scale: 0.95, rotate: -2 }}
                                                     animate={{ opacity: 1, scale: 1, rotate: 0 }}
                                                     transition={{ ease: 'easeOut', duration: 0.2, delay: 0.1 }}
                                                 >
                                                     <Button
                                                         type="submit"
-                                                        className="w-full transition-all duration-150 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]"
+                                                        className="w-full mx-auto transition-all duration-150 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]"
                                                         disabled={loading}
                                                     >
                                                         {loading ? (
@@ -232,7 +235,7 @@ export default function Auth() {
                                                         placeholder="username"
                                                         value={username}
                                                         onChange={(e) => setUsername(e.target.value)}
-                                                        className="transition-all duration-150 focus:shadow-xl focus:ring-2 focus:ring-primary/50"
+                                                        className="w-full mx-auto bg-background transition duration-200 ease-out focus:bg-primary/10 focus:border-primary focus:shadow-lg focus:animate-pulse-glow"
                                                         required
                                                     />
                                                 </motion.div>
@@ -249,7 +252,7 @@ export default function Auth() {
                                                         placeholder="your@email.com"
                                                         value={email}
                                                         onChange={(e) => setEmail(e.target.value)}
-                                                        className="transition-all duration-150 focus:shadow-xl focus:ring-2 focus:ring-primary/50"
+                                                        className="w-full mx-auto bg-background transition duration-200 ease-out focus:bg-primary/10 focus:border-primary focus:shadow-lg focus:animate-pulse-glow"
                                                         required
                                                     />
                                                 </motion.div>
@@ -266,20 +269,20 @@ export default function Auth() {
                                                         placeholder="••••••••"
                                                         value={password}
                                                         onChange={(e) => setPassword(e.target.value)}
-                                                        className="transition-all duration-150 focus:shadow-xl focus:ring-2 focus:ring-primary/50"
+                                                        className="w-full mx-auto bg-background transition duration-200 ease-out focus:bg-primary/10 focus:border-primary focus:shadow-lg focus:animate-pulse-glow"
                                                         required
                                                         minLength={6}
                                                     />
                                                 </motion.div>
                                                 <motion.div
-                                                    className="space-y-2"
+                                                    className="space-y-2 mt-4"
                                                     initial={{ opacity: 0, scale: 0.95, rotate: 2 }}
                                                     animate={{ opacity: 1, scale: 1, rotate: 0 }}
                                                     transition={{ ease: 'easeOut', duration: 0.2, delay: 0.15 }}
                                                 >
                                                     <Button
                                                         type="submit"
-                                                        className="w-full transition-all duration-150 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]"
+                                                        className="w-full mx-auto transition-all duration-150 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]"
                                                         disabled={loading}
                                                     >
                                                         {loading ? (
