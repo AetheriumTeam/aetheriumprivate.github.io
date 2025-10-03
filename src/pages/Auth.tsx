@@ -76,27 +76,33 @@ export default function Auth() {
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-primary/20 via-background to-secondary/20 flex items-center justify-center p-4">
-            <Card className="w-full max-w-md animate-in fade-in-0 zoom-in-95 duration-500">
+            <Card className="w-full max-w-md animate-in fade-in-0 zoom-in-98 duration-700">
                 <CardHeader className="text-center">
-                    <CardTitle className="text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent animate-in slide-in-from-top-4 duration-700">
+                    <CardTitle className="text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent animate-in slide-in-from-top-2 duration-1000">
                         Aetherium
                     </CardTitle>
-                    <CardDescription className="animate-in fade-in-0 slide-in-from-top-2 duration-700 delay-100">
+                    <CardDescription className="animate-in fade-in-0 slide-in-from-top-1 duration-1000 delay-150">
                         Войдите или зарегистрируйтесь
                     </CardDescription>
                 </CardHeader>
                 <CardContent>
                     <Tabs defaultValue="signin" className="w-full">
-                        <TabsList className="grid w-full grid-cols-2">
-                            <TabsTrigger value="signin" className="transition-all duration-300 data-[state=active]:scale-105">
+                        <TabsList className="grid w-full grid-cols-2 p-1 bg-muted/50 backdrop-blur-sm">
+                            <TabsTrigger
+                                value="signin"
+                                className="transition-all duration-500 data-[state=active]:bg-background data-[state=active]:shadow-lg data-[state=active]:scale-[1.02] rounded-md"
+                            >
                                 Вход
                             </TabsTrigger>
-                            <TabsTrigger value="signup" className="transition-all duration-300 data-[state=active]:scale-105">
+                            <TabsTrigger
+                                value="signup"
+                                className="transition-all duration-500 data-[state=active]:bg-background data-[state=active]:shadow-lg data-[state=active]:scale-[1.02] rounded-md"
+                            >
                                 Регистрация
                             </TabsTrigger>
                         </TabsList>
 
-                        <TabsContent value="signin" className="animate-in fade-in-0 slide-in-from-left-4 duration-500">
+                        <TabsContent value="signin" className="animate-in fade-in-0 slide-in-from-left-2 duration-700">
                             <form onSubmit={handleSignIn} className="space-y-4">
                                 <div className="space-y-2">
                                     <Label htmlFor="signin-email">Email</Label>
@@ -106,7 +112,7 @@ export default function Auth() {
                                         placeholder="your@email.com"
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
-                                        className="transition-all duration-300 focus:scale-[1.02]"
+                                        className="transition-all duration-500 focus:scale-[1.01]"
                                         required
                                     />
                                 </div>
@@ -118,13 +124,13 @@ export default function Auth() {
                                         placeholder="••••••••"
                                         value={password}
                                         onChange={(e) => setPassword(e.target.value)}
-                                        className="transition-all duration-300 focus:scale-[1.02]"
+                                        className="transition-all duration-500 focus:scale-[1.01]"
                                         required
                                     />
                                 </div>
                                 <Button
                                     type="submit"
-                                    className="w-full transition-all duration-300 hover:scale-[1.02] active:scale-95"
+                                    className="w-full transition-all duration-500 hover:scale-[1.01] active:scale-[0.98]"
                                     disabled={loading}
                                 >
                                     {loading ? (
@@ -137,7 +143,7 @@ export default function Auth() {
                             </form>
                         </TabsContent>
 
-                        <TabsContent value="signup" className="animate-in fade-in-0 slide-in-from-right-4 duration-500">
+                        <TabsContent value="signup" className="animate-in fade-in-0 slide-in-from-right-2 duration-700">
                             <form onSubmit={handleSignUp} className="space-y-4">
                                 <div className="space-y-2">
                                     <Label htmlFor="signup-username">Имя пользователя</Label>
@@ -147,7 +153,7 @@ export default function Auth() {
                                         placeholder="username"
                                         value={username}
                                         onChange={(e) => setUsername(e.target.value)}
-                                        className="transition-all duration-300 focus:scale-[1.02]"
+                                        className="transition-all duration-500 focus:scale-[1.01]"
                                         required
                                     />
                                 </div>
@@ -159,7 +165,7 @@ export default function Auth() {
                                         placeholder="your@email.com"
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
-                                        className="transition-all duration-300 focus:scale-[1.02]"
+                                        className="transition-all duration-500 focus:scale-[1.01]"
                                         required
                                     />
                                 </div>
@@ -171,14 +177,14 @@ export default function Auth() {
                                         placeholder="••••••••"
                                         value={password}
                                         onChange={(e) => setPassword(e.target.value)}
-                                        className="transition-all duration-300 focus:scale-[1.02]"
+                                        className="transition-all duration-500 focus:scale-[1.01]"
                                         required
                                         minLength={6}
                                     />
                                 </div>
                                 <Button
                                     type="submit"
-                                    className="w-full transition-all duration-300 hover:scale-[1.02] active:scale-95"
+                                    className="w-full transition-all duration-500 hover:scale-[1.01] active:scale-[0.98]"
                                     disabled={loading}
                                 >
                                     {loading ? (
