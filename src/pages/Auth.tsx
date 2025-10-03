@@ -116,6 +116,22 @@ export default function Auth() {
                             </TabsTrigger>
                         </TabsList>
 
+                        // TabsList animation (faster tab switch)
+                        <motion.div
+                            className="absolute inset-y-1 w-[calc(50%-4px)] bg-background shadow-lg rounded-md"
+                            initial={false}
+                            animate={{
+                                left: activeTab === 'signin' ? '4px' : 'calc(50% + 0px)',
+                            }}
+                            transition={{
+                                type: "spring",
+                                stiffness: 500, // Increased stiffness for faster spring
+                                damping: 20,   // Reduced damping for quicker settling
+                                duration: 0.3  // Fallback duration for non-spring animations
+                            }}
+                        />
+
+                        // Form container height animation
                         <motion.div
                             className="relative mt-4 overflow-hidden"
                             animate={{
@@ -123,8 +139,9 @@ export default function Auth() {
                             }}
                             transition={{
                                 type: "spring",
-                                stiffness: 300,
-                                damping: 30
+                                stiffness: 500, // Increased stiffness
+                                damping: 20,   // Reduced damping
+                                duration: 0.3  // Faster fallback
                             }}
                         >
                             <AnimatePresence mode="wait" initial={false}>
@@ -136,8 +153,9 @@ export default function Auth() {
                                         exit={{ opacity: 0, x: -20 }}
                                         transition={{
                                             type: "spring",
-                                            stiffness: 300,
-                                            damping: 30
+                                            stiffness: 500, // Faster spring
+                                            damping: 20,   // Less resistance
+                                            duration: 0.2  // Faster fallback
                                         }}
                                     >
                                         <form onSubmit={handleSignIn} className="space-y-4">
@@ -145,7 +163,7 @@ export default function Auth() {
                                                 className="space-y-2"
                                                 initial={{ opacity: 0, y: 10 }}
                                                 animate={{ opacity: 1, y: 0 }}
-                                                transition={{ delay: 0.1 }}
+                                                transition={{ delay: 0.05, duration: 0.2 }} // Reduced delay and duration
                                             >
                                                 <Label htmlFor="signin-email">Email</Label>
                                                 <Input
@@ -154,7 +172,7 @@ export default function Auth() {
                                                     placeholder="your@email.com"
                                                     value={email}
                                                     onChange={(e) => setEmail(e.target.value)}
-                                                    className="transition-all duration-300 focus:scale-[1.01] focus:shadow-lg focus:shadow-primary/20"
+                                                    className="transition-all duration-200 focus:scale-[1.01] focus:shadow-lg focus:shadow-primary/20" // Reduced CSS transition duration
                                                     required
                                                 />
                                             </motion.div>
@@ -162,7 +180,7 @@ export default function Auth() {
                                                 className="space-y-2"
                                                 initial={{ opacity: 0, y: 10 }}
                                                 animate={{ opacity: 1, y: 0 }}
-                                                transition={{ delay: 0.2 }}
+                                                transition={{ delay: 0.1, duration: 0.2 }} // Reduced delay and duration
                                             >
                                                 <Label htmlFor="signin-password">Пароль</Label>
                                                 <Input
@@ -171,25 +189,25 @@ export default function Auth() {
                                                     placeholder="••••••••"
                                                     value={password}
                                                     onChange={(e) => setPassword(e.target.value)}
-                                                    className="transition-all duration-300 focus:scale-[1.01] focus:shadow-lg focus:shadow-primary/20"
+                                                    className="transition-all duration-200 focus:scale-[1.01] focus:shadow-lg focus:shadow-primary/20" // Reduced CSS transition duration
                                                     required
                                                 />
                                             </motion.div>
                                             <motion.div
                                                 initial={{ opacity: 0, y: 10 }}
                                                 animate={{ opacity: 1, y: 0 }}
-                                                transition={{ delay: 0.3 }}
+                                                transition={{ delay: 0.15, duration: 0.2 }} // Reduced delay and duration
                                             >
                                                 <Button
                                                     type="submit"
-                                                    className="w-full transition-all duration-300 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]"
+                                                    className="w-full transition-all duration-200 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]" // Reduced CSS transition duration
                                                     disabled={loading}
                                                 >
                                                     {loading ? (
                                                         <span className="flex items-center gap-2">
-                              <span className="inline-block w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
-                              Вход...
-                            </span>
+                  <span className="inline-block w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
+                  Вход...
+                </span>
                                                     ) : 'Войти'}
                                                 </Button>
                                             </motion.div>
@@ -203,8 +221,9 @@ export default function Auth() {
                                         exit={{ opacity: 0, x: 20 }}
                                         transition={{
                                             type: "spring",
-                                            stiffness: 300,
-                                            damping: 30
+                                            stiffness: 500, // Faster spring
+                                            damping: 20,   // Less resistance
+                                            duration: 0.2  // Faster fallback
                                         }}
                                     >
                                         <form onSubmit={handleSignUp} className="space-y-4">
@@ -212,7 +231,7 @@ export default function Auth() {
                                                 className="space-y-2"
                                                 initial={{ opacity: 0, y: 10 }}
                                                 animate={{ opacity: 1, y: 0 }}
-                                                transition={{ delay: 0.1 }}
+                                                transition={{ delay: 0.05, duration: 0.2 }} // Reduced delay and duration
                                             >
                                                 <Label htmlFor="signup-username">Имя пользователя</Label>
                                                 <Input
@@ -221,7 +240,7 @@ export default function Auth() {
                                                     placeholder="username"
                                                     value={username}
                                                     onChange={(e) => setUsername(e.target.value)}
-                                                    className="transition-all duration-300 focus:scale-[1.01] focus:shadow-lg focus:shadow-primary/20"
+                                                    className="transition-all duration-200 focus:scale-[1.01] focus:shadow-lg focus:shadow-primary/20" // Reduced CSS transition duration
                                                     required
                                                 />
                                             </motion.div>
@@ -229,7 +248,7 @@ export default function Auth() {
                                                 className="space-y-2"
                                                 initial={{ opacity: 0, y: 10 }}
                                                 animate={{ opacity: 1, y: 0 }}
-                                                transition={{ delay: 0.2 }}
+                                                transition={{ delay: 0.1, duration: 0.2 }} // Reduced delay and duration
                                             >
                                                 <Label htmlFor="signup-email">Email</Label>
                                                 <Input
@@ -238,7 +257,7 @@ export default function Auth() {
                                                     placeholder="your@email.com"
                                                     value={email}
                                                     onChange={(e) => setEmail(e.target.value)}
-                                                    className="transition-all duration-300 focus:scale-[1.01] focus:shadow-lg focus:shadow-primary/20"
+                                                    className="transition-all duration-200 focus:scale-[1.01] focus:shadow-lg focus:shadow-primary/20" // Reduced CSS transition duration
                                                     required
                                                 />
                                             </motion.div>
@@ -246,7 +265,7 @@ export default function Auth() {
                                                 className="space-y-2"
                                                 initial={{ opacity: 0, y: 10 }}
                                                 animate={{ opacity: 1, y: 0 }}
-                                                transition={{ delay: 0.3 }}
+                                                transition={{ delay: 0.15, duration: 0.2 }} // Reduced delay and duration
                                             >
                                                 <Label htmlFor="signup-password">Пароль</Label>
                                                 <Input
@@ -255,7 +274,7 @@ export default function Auth() {
                                                     placeholder="••••••••"
                                                     value={password}
                                                     onChange={(e) => setPassword(e.target.value)}
-                                                    className="transition-all duration-300 focus:scale-[1.01] focus:shadow-lg focus:shadow-primary/20"
+                                                    className="transition-all duration-200 focus:scale-[1.01] focus:shadow-lg focus:shadow-primary/20" // Reduced CSS transition duration
                                                     required
                                                     minLength={6}
                                                 />
@@ -263,18 +282,18 @@ export default function Auth() {
                                             <motion.div
                                                 initial={{ opacity: 0, y: 10 }}
                                                 animate={{ opacity: 1, y: 0 }}
-                                                transition={{ delay: 0.4 }}
+                                                transition={{ delay: 0.2, duration: 0.2 }} // Reduced delay and duration
                                             >
                                                 <Button
                                                     type="submit"
-                                                    className="w-full transition-all duration-300 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]"
+                                                    className="w-full transition-all duration-200 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]" // Reduced CSS transition duration
                                                     disabled={loading}
                                                 >
                                                     {loading ? (
                                                         <span className="flex items-center gap-2">
-                              <span className="inline-block w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
-                              Регистрация...
-                            </span>
+                  <span className="inline-block w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
+                  Регистрация...
+                </span>
                                                     ) : 'Зарегистрироваться'}
                                                 </Button>
                                             </motion.div>
