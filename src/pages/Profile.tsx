@@ -15,6 +15,12 @@ export default function Profile() {
   const [roles, setRoles] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
 
+    const roleTranslations: Record<string, string> = {
+        'admin': 'Администратор',
+        'user': 'Пользователь',
+        'moderator': 'Модератор'
+    };
+
   useEffect(() => {
     if (user) {
       loadProfile();
@@ -118,9 +124,9 @@ export default function Profile() {
                     </p>
                     <div className="flex flex-wrap gap-2">
                       {roles.map((role) => (
-                        <Badge key={role} variant={role === 'admin' ? 'default' : 'secondary'}>
-                          {role}
-                        </Badge>
+                      <Badge key={role} variant={role === 'admin' ? 'default' : 'secondary'}>
+                          {roleTranslations[role] || role}
+                      </Badge>
                       ))}
                     </div>
                   </div>
