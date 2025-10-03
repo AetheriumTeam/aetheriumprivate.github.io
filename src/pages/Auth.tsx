@@ -86,7 +86,7 @@ export default function Auth() {
                     </CardDescription>
                 </CardHeader>
                 <CardContent>
-                    <Tabs defaultValue="signin" className="w-full">
+                    <Tabs defaultValue="signin" className="w-full transition-all duration-500 ease-in-out">
                         <TabsList className="grid w-full grid-cols-2 p-1 bg-muted/50 backdrop-blur-sm">
                             <TabsTrigger
                                 value="signin"
