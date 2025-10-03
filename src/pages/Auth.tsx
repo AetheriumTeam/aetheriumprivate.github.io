@@ -129,7 +129,7 @@ export default function Auth() {
                         </TabsList>
 
                         <motion.div
-                            className="relative mt-4 overflow-hidden"
+                            className="relative mt-4 overflow-hidden px-2"
                             animate={{
                                 height: activeTab === 'signin' ? 240 : 320,
                             }}
@@ -165,7 +165,7 @@ export default function Auth() {
                                                         placeholder="your@email.com"
                                                         value={email}
                                                         onChange={(e) => setEmail(e.target.value)}
-                                                        className="transition-all duration-150 focus:scale-[1.01] focus:shadow-lg focus:shadow-primary/20"
+                                                        className="transition-all duration-150 focus:shadow-xl focus:ring-2 focus:ring-primary/50"
                                                         required
                                                     />
                                                 </motion.div>
@@ -182,7 +182,7 @@ export default function Auth() {
                                                         placeholder="••••••••"
                                                         value={password}
                                                         onChange={(e) => setPassword(e.target.value)}
-                                                        className="transition-all duration-150 focus:scale-[1.01] focus:shadow-lg focus:shadow-primary/20"
+                                                        className="transition-all duration-150 focus:shadow-xl focus:ring-2 focus:ring-primary/50"
                                                         required
                                                     />
                                                 </motion.div>
@@ -231,8 +231,8 @@ export default function Auth() {
                                                         type="text"
                                                         placeholder="username"
                                                         value={username}
-                                                        onChange={(e) => setEmail(e.target.value)}
-                                                        className="transition-all duration-150 focus:scale-[1.01] focus:shadow-lg focus:shadow-primary/20"
+                                                        onChange={(e) => setUsername(e.target.value)}
+                                                        className="transition-all duration-150 focus:shadow-xl focus:ring-2 focus:ring-primary/50"
                                                         required
                                                     />
                                                 </motion.div>
@@ -249,7 +249,7 @@ export default function Auth() {
                                                         placeholder="your@email.com"
                                                         value={email}
                                                         onChange={(e) => setEmail(e.target.value)}
-                                                        className="transition-all duration-150 focus:scale-[1.01] focus:shadow-lg focus:shadow-primary/20"
+                                                        className="transition-all duration-150 focus:shadow-xl focus:ring-2 focus:ring-primary/50"
                                                         required
                                                     />
                                                 </motion.div>
@@ -266,7 +266,7 @@ export default function Auth() {
                                                         placeholder="••••••••"
                                                         value={password}
                                                         onChange={(e) => setPassword(e.target.value)}
-                                                        className="transition-all duration-150 focus:scale-[1.01] focus:shadow-lg focus:shadow-primary/20"
+                                                        className="transition-all duration-150 focus:shadow-xl focus:ring-2 focus:ring-primary/50"
                                                         required
                                                         minLength={6}
                                                     />
