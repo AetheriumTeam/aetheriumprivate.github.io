@@ -104,7 +104,7 @@ export default function Profile() {
               <CardContent className="space-y-4">
                 <div>
                   <p className="text-sm text-muted-foreground">Имя пользователя</p>
-                  <p className="font-medium">{profile?.username || 'Не указано'}</p>
+                  <p className="font-medium">{user?.user_metadata?.username || profile?.username || 'Не указано'}</p>
                 </div>
                 <div>
                   <p className="text-sm text-muted-foreground">Email</p>
