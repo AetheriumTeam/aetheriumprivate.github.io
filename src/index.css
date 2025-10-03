@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 222 47% 11%;
+    --foreground: 213 31% 91%;
+    --card: 223 47% 11%;
+    --card-foreground: 213 31% 91%;
+    --popover: 224 47% 11%;
+    --popover-foreground: 213 31% 91%;
+    --primary: 266 100% 65%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 189 100% 50%;
+    --secondary-foreground: 0 0% 0%;
+    --muted: 223 47% 20%;
+    --muted-foreground: 213 31% 70%;
+    --accent: 266 100% 65%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 213 31% 91%;
+    --border: 223 47% 20%;
+    --input: 223 47% 20%;
+    --ring: 266 100% 65%;
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+}
