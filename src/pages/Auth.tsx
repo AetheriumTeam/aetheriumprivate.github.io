@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Auth() {
     const [email, setEmail] = useState('');
@@ -89,10 +90,16 @@ export default function Auth() {
                 <CardContent>
                     <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
                         <TabsList className="grid w-full grid-cols-2 p-1 bg-muted/50 backdrop-blur-sm relative">
-                            <div
-                                className="absolute inset-y-1 w-[calc(50%-4px)] bg-background shadow-lg rounded-md transition-all duration-300 ease-out"
-                                style={{
+                            <motion.div
+                                className="absolute inset-y-1 w-[calc(50%-4px)] bg-background shadow-lg rounded-md"
+                                initial={false}
+                                animate={{
                                     left: activeTab === 'signin' ? '4px' : 'calc(50% + 0px)',
+                                }}
+                                transition={{
+                                    type: "spring",
+                                    stiffness: 300,
+                                    damping: 30
                                 }}
                             />
                             <TabsTrigger
@@ -109,108 +116,173 @@ export default function Auth() {
                             </TabsTrigger>
                         </TabsList>
 
-                        <div className="relative mt-4" style={{ minHeight: activeTab === 'signin' ? '240px' : '320px', transition: 'min-height 300ms ease-out' }}>
-                            <TabsContent
-                                value="signin"
-                                className="absolute inset-0 transition-all duration-400 data-[state=inactive]:opacity-0 data-[state=inactive]:translate-x-[-20px] data-[state=inactive]:pointer-events-none data-[state=active]:opacity-100 data-[state=active]:translate-x-0"
-                            >
-                                <form onSubmit={handleSignIn} className="space-y-4">
-                                    <div className="space-y-2 animate-in fade-in-0 slide-in-from-bottom-2 duration-500 delay-100">
-                                        <Label htmlFor="signin-email">Email</Label>
-                                        <Input
-                                            id="signin-email"
-                                            type="email"
-                                            placeholder="your@email.com"
-                                            value={email}
-                                            onChange={(e) => setEmail(e.target.value)}
-                                            className="transition-all duration-300 focus:scale-[1.01] focus:shadow-lg focus:shadow-primary/20"
-                                            required
-                                        />
-                                    </div>
-                                    <div className="space-y-2 animate-in fade-in-0 slide-in-from-bottom-2 duration-500 delay-200">
-                                        <Label htmlFor="signin-password">Пароль</Label>
-                                        <Input
-                                            id="signin-password"
-                                            type="password"
-                                            placeholder="••••••••"
-                                            value={password}
-                                            onChange={(e) => setPassword(e.target.value)}
-                                            className="transition-all duration-300 focus:scale-[1.01] focus:shadow-lg focus:shadow-primary/20"
-                                            required
-                                        />
-                                    </div>
-                                    <Button
-                                        type="submit"
-                                        className="w-full transition-all duration-300 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98] animate-in fade-in-0 slide-in-from-bottom-2 delay-300"
-                                        disabled={loading}
+                        <motion.div
+                            className="relative mt-4 overflow-hidden"
+                            animate={{
+                                height: activeTab === 'signin' ? 240 : 320
+                            }}
+                            transition={{
+                                type: "spring",
+                                stiffness: 300,
+                                damping: 30
+                            }}
+                        >
+                            <AnimatePresence mode="wait" initial={false}>
+                                {activeTab === 'signin' ? (
+                                    <motion.div
+                                        key="signin"
+                                        initial={{ opacity: 0, x: -20 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        exit={{ opacity: 0, x: -20 }}
+                                        transition={{
+                                            type: "spring",
+                                            stiffness: 300,
+                                            damping: 30
+                                        }}
                                     >
-                                        {loading ? (
-                                            <span className="flex items-center gap-2">
-                        <span className="inline-block w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
-                        Вход...
-                      </span>
-                                        ) : 'Войти'}
-                                    </Button>
-                                </form>
-                            </TabsContent>
-
-                            <TabsContent
-                                value="signup"
-                                className="absolute inset-0 transition-all duration-400 data-[state=inactive]:opacity-0 data-[state=inactive]:translate-x-[20px] data-[state=inactive]:pointer-events-none data-[state=active]:opacity-100 data-[state=active]:translate-x-0"
-                            >
-                                <form onSubmit={handleSignUp} className="space-y-4">
-                                    <div className="space-y-2 animate-in fade-in-0 slide-in-from-bottom-2 duration-500 delay-100">
-                                        <Label htmlFor="signup-username">Имя пользователя</Label>
-                                        <Input
-                                            id="signup-username"
-                                            type="text"
-                                            placeholder="username"
-                                            value={username}
-                                            onChange={(e) => setUsername(e.target.value)}
-                                            className="transition-all duration-300 focus:scale-[1.01] focus:shadow-lg focus:shadow-primary/20"
-                                            required
-                                        />
-                                    </div>
-                                    <div className="space-y-2 animate-in fade-in-0 slide-in-from-bottom-2 duration-500 delay-200">
-                                        <Label htmlFor="signup-email">Email</Label>
-                                        <Input
-                                            id="signup-email"
-                                            type="email"
-                                            placeholder="your@email.com"
-                                            value={email}
-                                            onChange={(e) => setEmail(e.target.value)}
-                                            className="transition-all duration-300 focus:scale-[1.01] focus:shadow-lg focus:shadow-primary/20"
-                                            required
-                                        />
-                                    </div>
-                                    <div className="space-y-2 animate-in fade-in-0 slide-in-from-bottom-2 duration-500 delay-300">
-                                        <Label htmlFor="signup-password">Пароль</Label>
-                                        <Input
-                                            id="signup-password"
-                                            type="password"
-                                            placeholder="••••••••"
-                                            value={password}
-                                            onChange={(e) => setPassword(e.target.value)}
-                                            className="transition-all duration-300 focus:scale-[1.01] focus:shadow-lg focus:shadow-primary/20"
-                                            required
-                                            minLength={6}
-                                        />
-                                    </div>
-                                    <Button
-                                        type="submit"
-                                        className="w-full transition-all duration-300 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98] animate-in fade-in-0 slide-in-from-bottom-2 delay-400"
-                                        disabled={loading}
+                                        <form onSubmit={handleSignIn} className="space-y-4">
+                                            <motion.div
+                                                className="space-y-2"
+                                                initial={{ opacity: 0, y: 10 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                transition={{ delay: 0.1 }}
+                                            >
+                                                <Label htmlFor="signin-email">Email</Label>
+                                                <Input
+                                                    id="signin-email"
+                                                    type="email"
+                                                    placeholder="your@email.com"
+                                                    value={email}
+                                                    onChange={(e) => setEmail(e.target.value)}
+                                                    className="transition-all duration-300 focus:scale-[1.01] focus:shadow-lg focus:shadow-primary/20"
+                                                    required
+                                                />
+                                            </motion.div>
+                                            <motion.div
+                                                className="space-y-2"
+                                                initial={{ opacity: 0, y: 10 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                transition={{ delay: 0.2 }}
+                                            >
+                                                <Label htmlFor="signin-password">Пароль</Label>
+                                                <Input
+                                                    id="signin-password"
+                                                    type="password"
+                                                    placeholder="••••••••"
+                                                    value={password}
+                                                    onChange={(e) => setPassword(e.target.value)}
+                                                    className="transition-all duration-300 focus:scale-[1.01] focus:shadow-lg focus:shadow-primary/20"
+                                                    required
+                                                />
+                                            </motion.div>
+                                            <motion.div
+                                                initial={{ opacity: 0, y: 10 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                transition={{ delay: 0.3 }}
+                                            >
+                                                <Button
+                                                    type="submit"
+                                                    className="w-full transition-all duration-300 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]"
+                                                    disabled={loading}
+                                                >
+                                                    {loading ? (
+                                                        <span className="flex items-center gap-2">
+                              <span className="inline-block w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
+                              Вход...
+                            </span>
+                                                    ) : 'Войти'}
+                                                </Button>
+                                            </motion.div>
+                                        </form>
+                                    </motion.div>
+                                ) : (
+                                    <motion.div
+                                        key="signup"
+                                        initial={{ opacity: 0, x: 20 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        exit={{ opacity: 0, x: 20 }}
+                                        transition={{
+                                            type: "spring",
+                                            stiffness: 300,
+                                            damping: 30
+                                        }}
                                     >
-                                        {loading ? (
-                                            <span className="flex items-center gap-2">
-                        <span className="inline-block w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
-                        Регистрация...
-                      </span>
-                                        ) : 'Зарегистрироваться'}
-                                    </Button>
-                                </form>
-                            </TabsContent>
-                        </div>
+                                        <form onSubmit={handleSignUp} className="space-y-4">
+                                            <motion.div
+                                                className="space-y-2"
+                                                initial={{ opacity: 0, y: 10 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                transition={{ delay: 0.1 }}
+                                            >
+                                                <Label htmlFor="signup-username">Имя пользователя</Label>
+                                                <Input
+                                                    id="signup-username"
+                                                    type="text"
+                                                    placeholder="username"
+                                                    value={username}
+                                                    onChange={(e) => setUsername(e.target.value)}
+                                                    className="transition-all duration-300 focus:scale-[1.01] focus:shadow-lg focus:shadow-primary/20"
+                                                    required
+                                                />
+                                            </motion.div>
+                                            <motion.div
+                                                className="space-y-2"
+                                                initial={{ opacity: 0, y: 10 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                transition={{ delay: 0.2 }}
+                                            >
+                                                <Label htmlFor="signup-email">Email</Label>
+                                                <Input
+                                                    id="signup-email"
+                                                    type="email"
+                                                    placeholder="your@email.com"
+                                                    value={email}
+                                                    onChange={(e) => setEmail(e.target.value)}
+                                                    className="transition-all duration-300 focus:scale-[1.01] focus:shadow-lg focus:shadow-primary/20"
+                                                    required
+                                                />
+                                            </motion.div>
+                                            <motion.div
+                                                className="space-y-2"
+                                                initial={{ opacity: 0, y: 10 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                transition={{ delay: 0.3 }}
+                                            >
+                                                <Label htmlFor="signup-password">Пароль</Label>
+                                                <Input
+                                                    id="signup-password"
+                                                    type="password"
+                                                    placeholder="••••••••"
+                                                    value={password}
+                                                    onChange={(e) => setPassword(e.target.value)}
+                                                    className="transition-all duration-300 focus:scale-[1.01] focus:shadow-lg focus:shadow-primary/20"
+                                                    required
+                                                    minLength={6}
+                                                />
+                                            </motion.div>
+                                            <motion.div
+                                                initial={{ opacity: 0, y: 10 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                transition={{ delay: 0.4 }}
+                                            >
+                                                <Button
+                                                    type="submit"
+                                                    className="w-full transition-all duration-300 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]"
+                                                    disabled={loading}
+                                                >
+                                                    {loading ? (
+                                                        <span className="flex items-center gap-2">
+                              <span className="inline-block w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
+                              Регистрация...
+                            </span>
+                                                    ) : 'Зарегистрироваться'}
+                                                </Button>
+                                            </motion.div>
+                                        </form>
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+                        </motion.div>
                     </Tabs>
                 </CardContent>
             </Card>
