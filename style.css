@@ -364,7 +364,7 @@ body::before {
 
 /* Cards */
 .card {
-    background: hsla(var(--card), 0.8);
+    background: hsla(var(--card), 0.9);
     backdrop-filter: blur(16px);
     border: 1px solid hsl(var(--border));
     border-radius: var(--radius);
@@ -655,9 +655,9 @@ body::before {
 }
 
 .privilege-content {
-    background: hsla(var(--card), 0.9);
+    background: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(16px);
-    border: 1px solid hsl(var(--border));
+    border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: var(--radius);
     padding: 2rem;
 }
@@ -774,23 +774,55 @@ body::before {
 
 /* Background colors for privileges */
 body.privilege-red {
-    background: linear-gradient(135deg, #ff0000 0%, #000000 100%);
+    background: linear-gradient(135deg, #8b0000 0%, #1a0000 100%);
     transition: background 0.5s ease;
+}
+
+body.privilege-red .gradient-text,
+body.privilege-red .section-title {
+    background: linear-gradient(135deg, #ff4444 0%, #000000 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 body.privilege-blue {
-    background: linear-gradient(135deg, #00bfff 0%, #0000ff 100%);
+    background: linear-gradient(135deg, #1e4d7b 0%, #0a1929 100%);
     transition: background 0.5s ease;
+}
+
+body.privilege-blue .gradient-text,
+body.privilege-blue .section-title {
+    background: linear-gradient(135deg, #00bfff 0%, #0066cc 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 body.privilege-yellow {
-    background: linear-gradient(135deg, #ffff00 0%, #00ff00 100%);
+    background: linear-gradient(135deg, #6b6b00 0%, #0a2f0a 100%);
     transition: background 0.5s ease;
 }
 
+body.privilege-yellow .gradient-text,
+body.privilege-yellow .section-title {
+    background: linear-gradient(135deg, #ffff00 0%, #00ff00 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
 body.privilege-black {
-    background: linear-gradient(135deg, #808080 0%, #000000 100%);
+    background: linear-gradient(135deg, #2a2a2a 0%, #000000 100%);
     transition: background 0.5s ease;
+}
+
+body.privilege-black .gradient-text,
+body.privilege-black .section-title {
+    background: linear-gradient(135deg, #666666 0%, #000000 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 /* Footer */
