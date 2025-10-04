@@ -6,19 +6,47 @@ import { useAuth } from './hooks/useAuth';
 import ProtectedRoute from './components/ProtectedRoute';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import Header from './components/Header';
+import logo from '@/assets/aetherium-logo.png';
+
+function Landing() {
+    return (
+        <div className="min-h-screen bg-background">
+            <Header />
+            <div className="pt-16">
+                <iframe
+                    src="/landing.html"
+                    className="w-full h-[calc(100vh-4rem)] border-0"
+                    title="Aetherium Landing"
+                />
+            </div>
+        </div>
+    );
+}
 
 function NotFound() {
     const navigate = useNavigate();
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted flex items-center justify-center p-4">
-            <div className="max-w-md w-full text-center space-y-8">
+        <div className="min-h-screen bg-background flex items-center justify-center p-4">
+            <Header />
+            <div className="max-w-md w-full text-center space-y-8 pt-16">
+                {/* Logo */}
+                <div className="relative flex justify-center">
+                    <img
+                        src={logo}
+                        alt="Aetherium"
+                        className="w-32 h-32 object-contain animate-pulse"
+                    />
+                    <div className="absolute inset-0 blur-3xl opacity-30 bg-gradient-to-r from-primary to-secondary" />
+                </div>
+
                 {/* Animated 404 */}
                 <div className="relative">
-                    <h1 className="text-9xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-600 animate-pulse">
+                    <h1 className="text-9xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-primary animate-pulse">
                         404
                     </h1>
-                    <div className="absolute inset-0 blur-3xl opacity-30 bg-gradient-to-r from-primary to-purple-600" />
+                    <div className="absolute inset-0 blur-3xl opacity-30 bg-gradient-to-r from-primary to-secondary" />
                 </div>
 
                 {/* Message */}
@@ -54,7 +82,7 @@ function NotFound() {
                 {/* Decorative elements */}
                 <div className="pt-8 flex justify-center gap-2 opacity-50">
                     <div className="w-2 h-2 rounded-full bg-primary animate-bounce" style={{ animationDelay: '0ms' }} />
-                    <div className="w-2 h-2 rounded-full bg-primary animate-bounce" style={{ animationDelay: '150ms' }} />
+                    <div className="w-2 h-2 rounded-full bg-secondary animate-bounce" style={{ animationDelay: '150ms' }} />
                     <div className="w-2 h-2 rounded-full bg-primary animate-bounce" style={{ animationDelay: '300ms' }} />
                 </div>
             </div>
@@ -76,6 +104,7 @@ function App() {
     return (
         <BrowserRouter>
             <Routes>
+                <Route path="/" element={<Landing />} />
                 <Route path="/auth" element={user ? <Navigate to="/profile" /> : <Auth />} />
                 <Route
                     path="/profile"
@@ -85,7 +114,6 @@ function App() {
                         </ProtectedRoute>
                     }
                 />
-                <Route path="/" element={<Navigate to={user ? "/profile" : "/auth"} />} />
                 <Route path="*" element={<NotFound />} />
             </Routes>
             <Toaster />

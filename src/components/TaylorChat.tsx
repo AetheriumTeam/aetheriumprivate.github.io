@@ -5,7 +5,8 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { Send, Bot } from 'lucide-react';
+import { Send, User } from 'lucide-react';
+import logo from '@/assets/aetherium-logo.png';
 
 type Message = {
   role: 'user' | 'assistant';
@@ -107,13 +108,15 @@ export default function TaylorChat() {
   };
 
   return (
-    <Card className="h-[calc(100vh-8rem)]">
+    <Card className="h-[calc(100vh-8rem)] border-primary/20">
       <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <Bot className="w-6 h-6" />
-          Taylor AI
+        <CardTitle className="flex items-center gap-2 text-foreground">
+          <img src={logo} alt="Taylor AI" className="h-6 w-6 object-contain" />
+          Taylor AI Ассистент
         </CardTitle>
-        <CardDescription>Ваш персональный AI ассистент</CardDescription>
+        <CardDescription className="text-muted-foreground">
+          Ваш персональный AI ассистент Aetherium
+        </CardDescription>
       </CardHeader>
       <CardContent className="flex flex-col h-[calc(100%-5rem)]">
         <ScrollArea className="flex-1 pr-4" ref={scrollRef}>
@@ -121,28 +124,41 @@ export default function TaylorChat() {
             {messages.map((message, index) => (
               <div
                 key={index}
-                className={`flex ${
+                className={`flex gap-3 ${
                   message.role === 'user' ? 'justify-end' : 'justify-start'
                 }`}
               >
+                {message.role === 'assistant' && (
+                  <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 border border-primary/30">
+                    <img src={logo} alt="AI" className="h-5 w-5 object-contain" />
+                  </div>
+                )}
                 <div
                   className={`max-w-[80%] rounded-lg px-4 py-2 ${
                     message.role === 'user'
                       ? 'bg-primary text-primary-foreground'
-                      : 'bg-muted'
+                      : 'bg-card border border-border'
                   }`}
                 >
                   <p className="text-sm whitespace-pre-wrap">{message.content}</p>
                 </div>
+                {message.role === 'user' && (
+                  <div className="w-8 h-8 rounded-full bg-secondary/20 flex items-center justify-center flex-shrink-0 border border-secondary/30">
+                    <User className="h-5 w-5 text-secondary" />
+                  </div>
+                )}
               </div>
             ))}
             {loading && messages[messages.length - 1]?.role !== 'assistant' && (
-              <div className="flex justify-start">
-                <div className="bg-muted rounded-lg px-4 py-2">
+              <div className="flex gap-3 justify-start">
+                <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 border border-primary/30 animate-pulse">
+                  <img src={logo} alt="AI" className="h-5 w-5 object-contain" />
+                </div>
+                <div className="bg-card border border-border rounded-lg px-4 py-2">
                   <div className="flex gap-1">
-                    <div className="w-2 h-2 bg-foreground/40 rounded-full animate-bounce" />
-                    <div className="w-2 h-2 bg-foreground/40 rounded-full animate-bounce [animation-delay:0.2s]" />
-                    <div className="w-2 h-2 bg-foreground/40 rounded-full animate-bounce [animation-delay:0.4s]" />
+                    <div className="w-2 h-2 bg-primary rounded-full animate-bounce" />
+                    <div className="w-2 h-2 bg-primary rounded-full animate-bounce [animation-delay:0.2s]" />
+                    <div className="w-2 h-2 bg-primary rounded-full animate-bounce [animation-delay:0.4s]" />
                   </div>
                 </div>
               </div>
