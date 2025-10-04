@@ -6,8 +6,6 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import Header from '@/components/Header';
-import logo from '@/assets/aetherium-logo.png';
 
 // Lazy load framer-motion
 let motion = { div: (props: any) => <div {...props} /> };
@@ -93,25 +91,16 @@ export default function Auth() {
     const initialTabPosition = activeTab === 'signin' ? '4px' : 'calc(50% + 0px)';
 
     return (
-        <div className="min-h-screen bg-background">
-            <Header />
-            <div className="min-h-screen bg-gradient-to-br from-primary/10 via-background to-secondary/10 flex items-center justify-center p-4 pt-20">
-                <Card className="w-full max-w-md animate-in fade-in-0 zoom-in-98 duration-500 overflow-hidden border-primary/20">
-                    <CardHeader className="text-center space-y-4">
-                        <div className="flex justify-center">
-                            <img
-                                src={logo}
-                                alt="Aetherium"
-                                className="w-20 h-20 object-contain animate-pulse"
-                            />
-                        </div>
-                        <CardTitle className="text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent animate-in slide-in-from-top-2 duration-700">
-                            Aetherium
-                        </CardTitle>
-                        <CardDescription className="animate-in fade-in-0 slide-in-from-top-1 duration-700 delay-100 text-muted-foreground">
-                            Войдите или зарегистрируйтесь
-                        </CardDescription>
-                    </CardHeader>
+        <div className="min-h-screen bg-gradient-to-br from-primary/10 via-background to-secondary/10 flex items-center justify-center p-4">
+            <Card className="w-full max-w-md animate-in fade-in-0 zoom-in-98 duration-500 overflow-hidden border-primary/20">
+                <CardHeader className="text-center space-y-4">
+                    <CardTitle className="text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent animate-in slide-in-from-top-2 duration-700">
+                        Вход в систему
+                    </CardTitle>
+                    <CardDescription className="animate-in fade-in-0 slide-in-from-top-1 duration-700 delay-100 text-muted-foreground">
+                        Войдите или зарегистрируйтесь
+                    </CardDescription>
+                </CardHeader>
                 <CardContent className="p-4">
                     <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
                         <TabsList className="grid w-full grid-cols-2 p-1 bg-muted/50 backdrop-blur-sm relative">
@@ -313,7 +302,6 @@ export default function Auth() {
                     </Tabs>
                 </CardContent>
             </Card>
-            </div>
         </div>
     );
 }

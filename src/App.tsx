@@ -2,24 +2,21 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Toaster } from '@/components/ui/toaster';
 import Auth from './pages/Auth';
 import Profile from './pages/Profile';
+import Chat from './pages/Chat';
 import { useAuth } from './hooks/useAuth';
 import ProtectedRoute from './components/ProtectedRoute';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import Header from './components/Header';
 import logo from '@/assets/aetherium-logo.png';
 
 function Landing() {
     return (
         <div className="min-h-screen bg-background">
-            <Header />
-            <div className="pt-16">
-                <iframe
-                    src="/landing.html"
-                    className="w-full h-[calc(100vh-4rem)] border-0"
-                    title="Aetherium Landing"
-                />
-            </div>
+            <iframe
+                src="/landing.html"
+                className="w-full h-screen border-0"
+                title="Aetherium Landing"
+            />
         </div>
     );
 }
@@ -29,8 +26,7 @@ function NotFound() {
 
     return (
         <div className="min-h-screen bg-background flex items-center justify-center p-4">
-            <Header />
-            <div className="max-w-md w-full text-center space-y-8 pt-16">
+            <div className="max-w-md w-full text-center space-y-8">
                 {/* Logo */}
                 <div className="relative flex justify-center">
                     <img
@@ -111,6 +107,14 @@ function App() {
                     element={
                         <ProtectedRoute>
                             <Profile />
+                        </ProtectedRoute>
+                    }
+                />
+                <Route
+                    path="/chat"
+                    element={
+                        <ProtectedRoute>
+                            <Chat />
                         </ProtectedRoute>
                     }
                 />
