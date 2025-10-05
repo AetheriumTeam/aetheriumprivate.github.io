@@ -141,6 +141,9 @@ body::before {
     height: 2.5rem;
     border-radius: 50%;
     object-fit: cover;
+    object-position: center;
+    vertical-align: middle;
+    display: block;
 }
 
 .logo-text {

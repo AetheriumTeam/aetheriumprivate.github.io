@@ -3,6 +3,7 @@ import { Toaster } from '@/components/ui/toaster';
 import Auth from './pages/Auth';
 import Profile from './pages/Profile';
 import Chat from './pages/Chat';
+import Settings from './pages/Settings';
 import { useAuth } from './hooks/useAuth';
 import ProtectedRoute from './components/ProtectedRoute';
 import { useNavigate } from 'react-router-dom';
@@ -106,6 +107,14 @@ function App() {
                     element={
                         <ProtectedRoute>
                             <Chat />
+                        </ProtectedRoute>
+                    }
+                />
+                <Route
+                    path="/settings"
+                    element={
+                        <ProtectedRoute>
+                            <Settings />
                         </ProtectedRoute>
                     }
                 />
