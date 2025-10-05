@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { supabase } from '@/integrations/supabase/client';
+import { supabase, isSupabaseConfigured } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -31,6 +31,10 @@ export default function Auth() {
 
     const handleSignUp = async (e: React.FormEvent) => {
         e.preventDefault();
+        if (!isSupabaseConfigured || !supabase) {
+            toast({ title: 'Supabase не настроен', description: 'Добавьте VITE_SUPABASE_URL и VITE_SUPABASE_PUBLISHABLE_KEY, затем перезапустите превью.', variant: 'destructive' });
+            return;
+        }
         setLoading(true);
 
         try {
@@ -62,6 +66,10 @@ export default function Auth() {
 
     const handleSignIn = async (e: React.FormEvent) => {
         e.preventDefault();
+        if (!isSupabaseConfigured || !supabase) {
+            toast({ title: 'Supabase не настроен', description: 'Добавьте VITE_SUPABASE_URL и VITE_SUPABASE_PUBLISHABLE_KEY, затем перезапустите превью.', variant: 'destructive' });
+            return;
+        }
         setLoading(true);
 
         try {
@@ -100,6 +108,11 @@ export default function Auth() {
                     <CardDescription className="animate-in fade-in-0 slide-in-from-top-1 duration-700 delay-100 text-muted-foreground">
                         Войдите или зарегистрируйтесь
                     </CardDescription>
+                    {!isSupabaseConfigured && (
+                        <p className="text-sm text-destructive-foreground bg-destructive/20 border border-destructive/40 rounded-md p-2">
+                            Функции входа отключены: не заданы VITE_SUPABASE_URL и VITE_SUPABASE_PUBLISHABLE_KEY.
+                        </p>
+                    )}
                 </CardHeader>
                 <CardContent className="p-4">
                     <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
@@ -170,6 +183,7 @@ export default function Auth() {
                                                         onChange={(e) => setEmail(e.target.value)}
                                                         className="w-full mx-auto bg-background transition duration-200 ease-out focus:bg-primary/10 focus:border-primary focus:shadow-lg focus:animate-pulse-glow"
                                                         required
+                                                        disabled={!isSupabaseConfigured}
                                                     />
                                                 </motion.div>
                                                 <motion.div
@@ -187,6 +201,7 @@ export default function Auth() {
                                                         onChange={(e) => setPassword(e.target.value)}
                                                         className="w-full mx-auto bg-background transition duration-200 ease-out focus:bg-primary/10 focus:border-primary focus:shadow-lg focus:animate-pulse-glow"
                                                         required
+                                                        disabled={!isSupabaseConfigured}
                                                     />
                                                 </motion.div>
                                                 <motion.div
@@ -198,7 +213,7 @@ export default function Auth() {
                                                     <Button
                                                         type="submit"
                                                         className="w-full mx-auto transition-all duration-150 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]"
-                                                        disabled={loading}
+                                                        disabled={loading || !isSupabaseConfigured}
                                                     >
                                                         {loading ? (
                                                             <span className="flex items-center gap-2">
@@ -237,6 +252,7 @@ export default function Auth() {
                                                         onChange={(e) => setUsername(e.target.value)}
                                                         className="w-full mx-auto bg-background transition duration-200 ease-out focus:bg-primary/10 focus:border-primary focus:shadow-lg focus:animate-pulse-glow"
                                                         required
+                                                        disabled={!isSupabaseConfigured}
                                                     />
                                                 </motion.div>
                                                 <motion.div
@@ -254,6 +270,7 @@ export default function Auth() {
                                                         onChange={(e) => setEmail(e.target.value)}
                                                         className="w-full mx-auto bg-background transition duration-200 ease-out focus:bg-primary/10 focus:border-primary focus:shadow-lg focus:animate-pulse-glow"
                                                         required
+                                                        disabled={!isSupabaseConfigured}
                                                     />
                                                 </motion.div>
                                                 <motion.div
@@ -272,6 +289,7 @@ export default function Auth() {
                                                         className="w-full mx-auto bg-background transition duration-200 ease-out focus:bg-primary/10 focus:border-primary focus:shadow-lg focus:animate-pulse-glow"
                                                         required
                                                         minLength={6}
+                                                        disabled={!isSupabaseConfigured}
                                                     />
                                                 </motion.div>
                                                 <motion.div
@@ -283,7 +301,7 @@ export default function Auth() {
                                                     <Button
                                                         type="submit"
                                                         className="w-full mx-auto transition-all duration-150 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]"
-                                                        disabled={loading}
+                                                        disabled={loading || !isSupabaseConfigured}
                                                     >
                                                         {loading ? (
                                                             <span className="flex items-center gap-2">

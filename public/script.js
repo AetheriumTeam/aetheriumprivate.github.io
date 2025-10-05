@@ -2,7 +2,25 @@
 document.addEventListener('DOMContentLoaded', function() {
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
-    
+
+    // Detect basic Supabase session presence in localStorage
+    function isLoggedIn() {
+        try {
+            for (let i = 0; i < localStorage.length; i++) {
+                const k = localStorage.key(i) || '';
+                if (/^sb-.*-auth-token$/.test(k)) {
+                    const v = localStorage.getItem(k);
+                    if (v && v !== 'null' && v !== 'undefined') return true;
+                }
+            }
+        } catch {}
+        return false;
+    }
+
+    // Hide auth link if logged in
+    const authLink = document.getElementById('authLink');
+    if (authLink && isLoggedIn()) authLink.style.display = 'none';
+
     if (mobileMenuBtn && mobileMenu) {
         mobileMenuBtn.addEventListener('click', function(e) {
             e.preventDefault();
@@ -10,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
             mobileMenuBtn.classList.toggle('active');
             mobileMenu.classList.toggle('active');
         });
-        
+
         // Close mobile menu when clicking on a link
         const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
         mobileNavLinks.forEach(link => {
@@ -19,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 mobileMenu.classList.remove('active');
             });
         });
-        
+
         // Close mobile menu when clicking outside
         document.addEventListener('click', function(event) {
             if (!mobileMenuBtn.contains(event.target) && !mobileMenu.contains(event.target)) {
@@ -28,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-    
+
     // Privilege Carousel
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
@@ -90,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 this.textContent = 'Скрыть возможности';
             } else {
                 features.style.display = 'none';
-                this.textContent = 'Показать возможности';
+                this.textContent = 'Показать возмож��ости';
             }
         });
     });

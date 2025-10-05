@@ -3,6 +3,7 @@ import { Toaster } from '@/components/ui/toaster';
 import Auth from './pages/Auth';
 import Profile from './pages/Profile';
 import Chat from './pages/Chat';
+import Settings from './pages/Settings';
 import { useAuth } from './hooks/useAuth';
 import ProtectedRoute from './components/ProtectedRoute';
 import { useNavigate } from 'react-router-dom';
@@ -27,16 +28,6 @@ function NotFound() {
     return (
         <div className="min-h-screen bg-background flex items-center justify-center p-4">
             <div className="max-w-md w-full text-center space-y-8">
-                {/* Logo */}
-                <div className="relative flex justify-center">
-                    <img
-                        src={logo}
-                        alt="Aetherium"
-                        className="w-32 h-32 object-contain animate-pulse"
-                    />
-                    <div className="absolute inset-0 blur-3xl opacity-30 bg-gradient-to-r from-primary to-secondary" />
-                </div>
-
                 {/* Animated 404 */}
                 <div className="relative">
                     <h1 className="text-9xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-primary animate-pulse">
@@ -59,7 +50,7 @@ function NotFound() {
                 {/* Actions */}
                 <div className="flex flex-col sm:flex-row gap-3 justify-center">
                     <Button
-                        onClick={() => navigate('/')}
+                        onClick={() => navigate('/home')}
                         size="lg"
                         className="w-full sm:w-auto"
                     >
@@ -100,7 +91,8 @@ function App() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<Landing />} />
+                <Route path="/" element={<Navigate to="/home" replace />} />
+                <Route path="/home" element={<Landing />} />
                 <Route path="/auth" element={user ? <Navigate to="/profile" /> : <Auth />} />
                 <Route
                     path="/profile"
@@ -115,6 +107,14 @@ function App() {
                     element={
                         <ProtectedRoute>
                             <Chat />
+                        </ProtectedRoute>
+                    }
+                />
+                <Route
+                    path="/settings"
+                    element={
+                        <ProtectedRoute>
+                            <Settings />
                         </ProtectedRoute>
                     }
                 />

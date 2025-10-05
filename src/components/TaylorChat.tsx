@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { supabase } from '@/integrations/supabase/client';
+import { supabase, isSupabaseConfigured } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -33,7 +33,12 @@ export default function TaylorChat() {
 
   const sendMessage = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!input.trim() || loading) return;
+    if (!input.trim() || loading || !isSupabaseConfigured || !supabase) {
+      if (!isSupabaseConfigured) {
+        toast({ title: 'Чат недоступен', description: 'Добавьте VITE_SUPABASE_URL и VITE_SUPABASE_PUBLISHABLE_KEY, чтобы включить серверные функции.', variant: 'destructive' });
+      }
+      return;
+    }
 
     const userMessage: Message = { role: 'user', content: input };
     setMessages((prev) => [...prev, userMessage]);
@@ -48,7 +53,7 @@ export default function TaylorChat() {
 
       if (error) {
         if (error.message.includes('429')) {
-          throw new Error('Превышен лимит запросов. Пожалуйста, попробуйте позже.');
+          throw new Error('Превышен лимит запросов. Пожалуйста, попробуйте п��зже.');
         }
         if (error.message.includes('402')) {
           throw new Error('Требуется пополнение баланса Lovable AI.');
@@ -117,6 +122,11 @@ export default function TaylorChat() {
         <CardDescription className="text-muted-foreground">
           Ваш персональный AI ассистент Aetherium
         </CardDescription>
+        {!isSupabaseConfigured && (
+          <p className="mt-2 text-sm text-destructive-foreground bg-destructive/20 border border-destructive/40 rounded-md p-2">
+            Чат отключен: не настроен Supabase.
+          </p>
+        )}
       </CardHeader>
       <CardContent className="flex flex-col h-[calc(100%-5rem)]">
         <ScrollArea className="flex-1 pr-4" ref={scrollRef}>
@@ -171,10 +181,10 @@ export default function TaylorChat() {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Напишите сообщение..."
-            disabled={loading}
+            disabled={loading || !isSupabaseConfigured}
             className="flex-1"
           />
-          <Button type="submit" disabled={loading} size="icon">
+          <Button type="submit" disabled={loading || !isSupabaseConfigured} size="icon">
             <Send className="w-4 h-4" />
           </Button>
         </form>
