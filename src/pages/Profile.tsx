@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { supabase } from '@/integrations/supabase/client';
+import { supabase, isSupabaseConfigured } from '@/integrations/supabase/client';
 import { useAuth } from '@/hooks/useAuth';
 import { useToast } from '@/hooks/use-toast';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -20,6 +20,7 @@ export default function Profile() {
     };
 
   useEffect(() => {
+    if (!isSupabaseConfigured || !supabase) return;
     if (user) {
       loadProfile();
       loadRoles();
@@ -27,6 +28,7 @@ export default function Profile() {
   }, [user]);
 
   const loadProfile = async () => {
+    if (!isSupabaseConfigured || !supabase) { setLoading(false); return; }
     try {
       const { data, error } = await supabase
         .from('profiles')
@@ -48,6 +50,7 @@ export default function Profile() {
   };
 
   const loadRoles = async () => {
+    if (!isSupabaseConfigured || !supabase) return;
     try {
       const { data, error } = await supabase
         .from('user_roles')
@@ -77,42 +80,53 @@ export default function Profile() {
           Управление аккаунтом
         </h1>
 
-        <Card className="border-primary/20">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-foreground">
-              <UserIcon className="w-5 h-5 text-primary" />
-              Профиль
-            </CardTitle>
-            <CardDescription className="text-muted-foreground">
-              Ваша учетная запись Aetherium
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div>
-              <p className="text-sm text-muted-foreground">Имя пользователя</p>
-              <p className="font-medium text-foreground">{user?.user_metadata?.username || profile?.username || 'Не указано'}</p>
-            </div>
-            <div>
-              <p className="text-sm text-muted-foreground">Email</p>
-              <p className="font-medium text-foreground">{user?.email}</p>
-            </div>
-            {roles.length > 0 && (
+        {!isSupabaseConfigured ? (
+          <Card className="border-destructive/40">
+            <CardHeader>
+              <CardTitle className="text-foreground">Профиль недоступен</CardTitle>
+              <CardDescription className="text-muted-foreground">
+                Не заданы переменные VITE_SUPABASE_URL и VITE_SUPABASE_PUBLISHABLE_KEY. Добавьте их, чтобы включить профиль и роли.
+              </CardDescription>
+            </CardHeader>
+          </Card>
+        ) : (
+          <Card className="border-primary/20">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-foreground">
+                <UserIcon className="w-5 h-5 text-primary" />
+                Профиль
+              </CardTitle>
+              <CardDescription className="text-muted-foreground">
+                Ваша учетная запись Aetherium
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
               <div>
-                <p className="text-sm text-muted-foreground mb-2 flex items-center gap-1">
-                  <Shield className="w-4 h-4 text-primary" />
-                  Роли
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {roles.map((role) => (
-                    <Badge key={role} className="bg-primary/20 text-primary border-primary/30">
-                      {roleTranslations[role] || role}
-                    </Badge>
-                  ))}
-                </div>
+                <p className="text-sm text-muted-foreground">Имя пользователя</p>
+                <p className="font-medium text-foreground">{user?.user_metadata?.username || profile?.username || 'Не указано'}</p>
               </div>
-            )}
-          </CardContent>
-        </Card>
+              <div>
+                <p className="text-sm text-muted-foreground">Email</p>
+                <p className="font-medium text-foreground">{user?.email}</p>
+              </div>
+              {roles.length > 0 && (
+                <div>
+                  <p className="text-sm text-muted-foreground mb-2 flex items-center gap-1">
+                    <Shield className="w-4 h-4 text-primary" />
+                    Роли
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {roles.map((role) => (
+                      <Badge key={role} className="bg-primary/20 text-primary border-primary/30">
+                        {roleTranslations[role] || role}
+                      </Badge>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </CardContent>
+          </Card>
+        )}
       </div>
     </div>
   );
