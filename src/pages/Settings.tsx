@@ -66,8 +66,8 @@ export default function Settings() {
                     if (error) throw error;
                     await supabase.auth.updateUser({ data: { username: username || undefined } });
                     toast({ title: 'OK', description: 'Профиль обновлен' });
-                  } catch (e: any) {
-                    toast({ title: 'Ошибка', description: e.message, variant: 'destructive' });
+                  } catch (e) {
+                    toast({ title: 'Ошибка', description: e instanceof Error ? e.message : 'Неизвестная ошибка', variant: 'destructive' });
                   } finally {
                     setSaving(false);
                   }

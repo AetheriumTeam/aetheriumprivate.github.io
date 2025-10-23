@@ -5,11 +5,11 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 // Lazy load framer-motion
-let motion = { div: (props: any) => <div {...props} /> };
-let AnimatePresence = ({ children }: any) => <>{children}</>;
+let motion = { div: (props: React.ComponentProps<'div'>) => <div {...props} /> };
+let AnimatePresence = ({ children }: { children: React.ReactNode }) => <>{children}</>;
 import('framer-motion').then((module) => {
     motion = module.motion;
     AnimatePresence = module.AnimatePresence;
@@ -53,10 +53,10 @@ export default function Auth() {
                 title: 'Регистрация успешна!',
                 description: 'Проверьте email для подтверждения аккаунта.',
             });
-        } catch (error: any) {
+        } catch (error) {
             toast({
                 title: 'Ошибка регистрации',
-                description: error.message,
+                description: error instanceof Error ? error.message : 'Неизвестная ошибка',
                 variant: 'destructive',
             });
         } finally {
@@ -84,10 +84,10 @@ export default function Auth() {
                 title: 'Вход выполнен!',
                 description: 'Добро пожаловать в Aetherium.',
             });
-        } catch (error: any) {
+        } catch (error) {
             toast({
                 title: 'Ошибка входа',
-                description: error.message,
+                description: error instanceof Error ? error.message : 'Неизвестная ошибка',
                 variant: 'destructive',
             });
         } finally {

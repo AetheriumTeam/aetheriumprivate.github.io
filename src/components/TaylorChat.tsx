@@ -99,11 +99,11 @@ export default function TaylorChat() {
           }
         }
       }
-    } catch (error: any) {
+    } catch (error) {
       console.error('Chat error:', error);
       toast({
         title: 'Ошибка',
-        description: error.message || 'Не удалось отправить сообщение',
+        description: error instanceof Error ? error.message : 'Не удалось отправить сообщение',
         variant: 'destructive',
       });
       setMessages((prev) => prev.slice(0, -1));

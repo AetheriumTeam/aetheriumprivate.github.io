@@ -8,7 +8,6 @@ import { useAuth } from './hooks/useAuth';
 import ProtectedRoute from './components/ProtectedRoute';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import logo from '@/assets/aetherium-logo.png';
 
 function Landing() {
     return (
