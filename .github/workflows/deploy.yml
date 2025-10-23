@@ -2,7 +2,7 @@ name: Deploy Vite site to GitHub Pages
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, cursor/fix-typescript-rendering-on-github-591a ]
   workflow_dispatch:
 
 permissions:
@@ -35,6 +35,10 @@ jobs:
 
       - name: Build
         run: npm run build
+        env:
+          VITE_SUPABASE_PROJECT_ID: ${{ secrets.VITE_SUPABASE_PROJECT_ID || 'rbdnpkxtonqvvgzxvyyd' }}
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL || 'https://rbdnpkxtonqvvgzxvyyd.supabase.co' }}
+          VITE_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.VITE_SUPABASE_PUBLISHABLE_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJiZG5wa3h0b25xdnZnenh2eXlkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTkxNDE5MjYsImV4cCI6MjA3NDcxNzkyNn0.9xDjK_hW__K2Q6GqMErwSbcsYkmduzB-xfN9q-ywS-w' }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
