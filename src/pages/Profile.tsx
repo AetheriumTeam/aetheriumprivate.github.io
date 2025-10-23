@@ -12,7 +12,7 @@ import { Shield, User as UserIcon } from 'lucide-react';
 export default function Profile() {
   const { user } = useAuth();
   const { toast } = useToast();
-  const [profile, setProfile] = useState<any>(null);
+  const [profile, setProfile] = useState<{ username?: string; avatar_url?: string } | null>(null);
   const [roles, setRoles] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -31,6 +31,7 @@ export default function Profile() {
       loadProfile();
       loadRoles();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
   useEffect(() => {
@@ -49,10 +50,10 @@ export default function Profile() {
 
       if (error) throw error;
       setProfile(data);
-    } catch (error: any) {
+    } catch (error) {
       toast({
         title: 'Ошибка загрузки профиля',
-        description: error.message,
+        description: error instanceof Error ? error.message : 'Неизвестная ошибка',
         variant: 'destructive',
       });
     } finally {
@@ -70,7 +71,7 @@ export default function Profile() {
 
       if (error) throw error;
       setRoles(data?.map(r => r.role) || []);
-    } catch (error: any) {
+    } catch (error) {
       console.error('Ошибка загрузки ролей:', error);
     }
   };
@@ -159,8 +160,8 @@ export default function Profile() {
                       await supabase.auth.updateUser({ data: { username: editorUsername || undefined } });
                       toast({ title: 'Сохранено', description: 'Профиль обновлен' });
                       await loadProfile();
-                    } catch (err: any) {
-                      toast({ title: 'Ошибка', description: err.message, variant: 'destructive' });
+                    } catch (err) {
+                      toast({ title: 'Ошибка', description: err instanceof Error ? err.message : 'Неизвестная ошибка', variant: 'destructive' });
                     } finally {
                       setSaving(false);
                     }
